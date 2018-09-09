@@ -4,6 +4,10 @@
 from PIL import Image
 import pytesseract
 import os, sys
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - %(message)s')
+logging.debug('Start of program')
 
 def get_bin_table(threshold = 210):
 	# 获取灰度转二值的映射table
@@ -16,7 +20,7 @@ def get_bin_table(threshold = 210):
 	return table
 
 def get_text(parent, filename):
-	print('-> 正在对 %s 进行文字识别' % (filename))
+	logging.debug('-> 正在对 %s 进行文字识别' % (filename))
 	img_path = os.path.join(parent, filename)
 	image = Image.open(img_path)
 	imgry = image.convert('L')  # 转化为灰度图
@@ -61,7 +65,10 @@ def main():
 		for filename in filenames:
 			if filename[-3:] in ['bmp', 'jpg', 'BMP', 'JPG']:
 				get_text(parent, filename)
-	print('已完成所有扫描。')
+		logging.debug('已完成所有扫描。')
 
 if __name__ == '__main__':
     main()
+
+
+logging.debug('End of program')
