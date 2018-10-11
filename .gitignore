@@ -4,3 +4,4 @@ ocr/ocr_captcha/img/*
 ocr/ocr_chs/gui.spec
 ocr/ocr_chs/build/*
 ocr/ocr_chs/__pycache__/*
+量化交易/data/data/*
