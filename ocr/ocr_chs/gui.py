@@ -29,12 +29,10 @@ class APP:
         self.menubar.add_cascade(label='关于', menu=file_menu)
 
         master['menu'] = self.menubar
-
         self.show_path(master)
         self.start_button(master)
         self.output_text = tk.StringVar()
         self.output_text.set('')
-        self.list = []
         self.l = tk.Text(master, width=72, height=13)
         self.l.grid(row=3, padx=5, pady=5, columnspan=3)
 
@@ -49,7 +47,6 @@ class APP:
         current_pic_path.grid(row=0, column=1, padx=5, pady=5)
         tk.Button(master, text='选择目录', command=self.select_pic_path, width=10, height=1).grid(row=0, column=2, padx=5, pady=5)
 
-
         tk.Label(text='输出路径：').grid(row=1, column=0, padx=5, pady=5)
         self.output_path = tk.StringVar()
         self.output_path.set(os.path.join(os.getcwd(), 'txt'))
@@ -61,11 +58,6 @@ class APP:
         path_ = askdirectory()
         self.pic_path.set(path_)
         self.output_path.set(os.path.join(path_, 'txt'))
-
-
-    # def select_output_path(self):
-    #     path_ = askdirectory()
-    #     self.output_path.set(path_)
 
     def start_button(self, master):
         self.start = tk.Button(master, text='开始', command=self.run, width=10, height=1, state='normal')

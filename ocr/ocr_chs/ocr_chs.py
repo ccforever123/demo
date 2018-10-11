@@ -27,12 +27,12 @@ def get_text(parent, filename):
     imgry = image.convert('L')  # 转化为灰度图
     table = get_bin_table()
     out = imgry.point(table, '1')
-#	out_path = os.path.join(parent, 'out')
-#	if os.path.isdir(out_path) == False:
-#		os.mkdir(out_path)
-#	out.save(os.path.join(out_path, '%s.bmp') % filename[:-4])
-#	print('已生成%s灰度图' % filename)
-#	Image._show(out)
+    # out_path = os.path.join(parent, 'out')
+    # if os.path.isdir(out_path) == False:
+    #     os.mkdir(out_path)
+    # out.save(os.path.join(out_path, '%s.bmp') % filename[:-4])
+    # print('已生成%s灰度图' % filename)
+    # Image._show(out)
     try:
         text = pytesseract.image_to_string(out, lang='chi_sim')
         text = remove_space(text)
