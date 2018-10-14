@@ -35,7 +35,9 @@ def read_file(code_file, file):
 def get_source(code):
     logging.debug('Downloading {}'.format(code))
     data_path = os.path.join(sys.path[0], 'data\data\{}.csv'.format(code))
-    url = 'http://quotes.money.163.com/service/chddata.html?code={}&start=20100104&end=20180928&fields=TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;VOTURNOVER;VATURNOVER'.format(code)
+    start_date = '20100104'
+    end_date = '201801012'
+    url = 'http://quotes.money.163.com/service/chddata.html?code={}&start={}&end={}&fields=TCLOSE;HIGH;LOW;TOPEN;LCLOSE;CHG;PCHG;VOTURNOVER;VATURNOVER'.format(code, start_date, end_date)
     urllib.request.urlretrieve(url, data_path)
     logging.debug('File Saved: {}'.format(data_path))
 
