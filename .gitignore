@@ -5,3 +5,5 @@ ocr/ocr_chs/gui.spec
 ocr/ocr_chs/build/*
 ocr/ocr_chs/__pycache__/*
 MachineLearning/data/data/*
+test.py
+output.csv
