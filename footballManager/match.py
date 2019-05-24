@@ -6,8 +6,15 @@ teamBName = '国际米兰'
 
 def main():
     result = [0, 0]
-    teamA = [[3,3,3], [4, 4, 4], [4, 5.5, 4], [4, 3, 3.5]]
-    teamB = [[3,3,3], [4, 3, 4], [4, 6, 4], [4, 4, 3]]
+    teamA = [[5, 5, 5],
+             [5, 5, 5],
+             [5, 4, 6],
+             [3, 6, 6]]
+
+    teamB = [[5, 5, 5],
+             [4, 6, 5],
+             [5, 4, 6],
+             [3, 9, 3]]
     homeTeam = []
     for i in teamA:
         homeTeam.append([])
@@ -15,8 +22,11 @@ def main():
             a = j + 1   # 主队加成
             homeTeam[-1].append(a)
     chance = random.randint(5, 10)
+    mins = random.sample(range(1, 90), chance)
+    mins.sort()
     print('===============比赛开始了，本场比赛是{} 对阵 {}==============='.format(teamAName, teamBName))
     for i in range(chance):
+        print('·  第{}分钟，'.format(mins[i]))
         homeIndex, awayIndex = 2, 2
         while True:
             time.sleep(1)
