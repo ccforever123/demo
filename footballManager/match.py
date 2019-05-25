@@ -29,7 +29,7 @@ def main():
         print('·  第{}分钟，'.format(mins[i]))
         homeIndex, awayIndex = 2, 2
         while True:
-            time.sleep(1)
+            time.sleep(0.5)
             position = random.randint(0, 2)
             homeIndex, awayIndex = cmp(teamA, teamB, homeIndex, awayIndex, position)
             if homeIndex == 0:
@@ -73,11 +73,11 @@ def shoot(result, attackTeam, teamA, teamB, aIndex, bIndex, position):    # 射�
         bIndex += 1
     if aIndex == -1:
         result[1] += 1
-        print('★☆★☆★☆★☆★☆★☆★☆★☆★☆{} 进球了！比分为{}:{}'.format(teamBName, result[0], result[1]))
+        print('★ ☆ ★ ☆ ★ ☆ {} 进球了！比分为{}:{} ★ ☆ ★ ☆ ★ ☆'.format(teamBName, result[0], result[1]))
         return result
     elif bIndex == -1:
         result[0] += 1
-        print('★☆★☆★☆★☆★☆★☆★☆★☆★☆{} 进球了！比分为{}:{}'.format(teamAName, result[0], result[1]))
+        print('★ ☆ ★ ☆ ★ ☆ {} 进球了！比分为{}:{} ★ ☆ ★ ☆ ★ ☆'.format(teamAName, result[0], result[1]))
         return result
     else:
         print('×  可惜啊！被守门员拦下了！')

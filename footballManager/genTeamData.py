@@ -8,8 +8,14 @@ def main():
     for teamName in teamNames:
         print('Start Gen {} data'.format(teamName))
         playerCount = 30
-        players = genTeamPlayers(teamName, playerCount)
-        teamData = {
+        players = genTeamPlayers(teamName, playerCount) # 球员列表
+        staffs = []
+        teamData = {    # 球队信息
+            "teamName": teamName,
+            "buildYear": '',
+            "stadium": '',
+            "trainLevel": 1,
+            "staffs": staffs,
             "players": players
         }
         with open('teams\\{}.json'.format(teamName), 'w', encoding='utf-8') as f:
