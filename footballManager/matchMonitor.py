@@ -25,8 +25,9 @@ def getTeamData(teamFile):  # 读取球队数据文件
     return teamData
 
 
-def startMatch(homeTeamData, awayTeamData): # 比赛函数
-    pass
+def startMatch(homeTeamData, awayTeamData): # 开始比赛模拟
+    ball = [1, 1]
+
 
 
 def getFieldAbility(teamData, formation):  # 获取球队信息及阵型，并生成场上能力值， formation = [4, 4, 2]
@@ -38,9 +39,24 @@ def getFieldAbility(teamData, formation):  # 获取球队信息及阵型，并�
         "midfielders": playerSelects[formation[0]:(formation[0]+formation[1])],
         "forwards": playerSelects[(formation[0] + formation[1]):]
     }
-
     print(firstList)
-    
+
+
+
+def roll():   # roll点决定球权
+    rollResult = random.random()
+    if rollResult < 0.5:
+        return 0
+    else:
+        return 1
+
+
+def pk(attackPlayer, defendPlayer):   # 球员对抗
+    pass
+
+
+def action(playerData, place): # 判断球员动作, place = [x, y]
+    total = playerData['ability']['dribble'] + playerData['ability']['pass']
 
 
 if __name__ == "__main__":
