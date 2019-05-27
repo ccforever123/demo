@@ -51,6 +51,10 @@ def genGoalKeeperData(count):
 
 
 def genSinglePlayerData(count):
+    teamworkRange = range(10, 90)    # 团队合作概率范围
+    teamworkList = sorted(random.sample(teamworkRange, 2))
+    # teamworkDribble = round(random.uniform(teamworkRange[0], teamworkRange[1]), 2)
+    # teamworkPass = round(random.uniform(teamworkDribble, teamworkRange[1]), 2)
     playerData = {
         "playerNumber": count,
         "name": randomName(),
@@ -59,12 +63,12 @@ def genSinglePlayerData(count):
         "ability": {
             "goalkeeper": random.randint(1, 10),    # 守门能力
             "defend": random.randint(1, 20),    # 防守能力
-            "setup": random.randint(1, 20), # 组织进攻能力
-            "dribble": random.randint(1, 20),  # 盘带能力
+            "dribble": random.randint(1, 20), # 盘带能力
             "pass": random.randint(1, 20),  # 传球能力
+            "setup": random.randint(1, 20),  # 组织进攻能力
             "shoot": random.randint(1, 20), # 射门能力
             "freekick": random.randint(1, 20),  # 任意球能力
-            "teamwork": random.random(),    # 团队合作概率，[0,1]
+            "teamwork": teamworkList,    # 团队合作概率
         },
         "stamina": random.randint(1, 20),   # 体能，表达球场覆盖范围
         "state": random.randint(1, 20), # 状态，表达能力加成，暂未使用
