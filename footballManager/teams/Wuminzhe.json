@@ -1,0 +1,273 @@
+{
+	"teamName": "无名者",
+	"buildYear": "",
+	"stadium": "",
+	"trainLevel": 1,
+	"staffs": [],
+	"players": [
+		{
+			"playerNumber": 1,
+			"name": "守门员1",
+			"birth": "1986.6",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 16,
+				"defend": 8,
+				"setup": 7,
+				"wing": 3,
+				"pass": 8,
+				"shoot": 7,
+				"freekick": 8,
+				"teamwork": 0.9947564220798484
+			},
+			"stamina": 11,
+			"state": 11
+		},
+		{
+			"playerNumber": 2,
+			"name": "守门员2",
+			"birth": "1994.1",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 19,
+				"defend": 6,
+				"setup": 4,
+				"wing": 5,
+				"pass": 9,
+				"shoot": 8,
+				"freekick": 12,
+				"teamwork": 0.33435788790200296
+			},
+			"stamina": 15,
+			"state": 3
+		},
+		{
+			"playerNumber": 3,
+			"name": "守门员3",
+			"birth": "1993.3",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 18,
+				"defend": 3,
+				"setup": 5,
+				"wing": 6,
+				"pass": 4,
+				"shoot": 9,
+				"freekick": 1,
+				"teamwork": 0.8954771555202222
+			},
+			"stamina": 17,
+			"state": 4
+		},
+		{
+			"playerNumber": 4,
+			"name": "陈晨",
+			"birth": "1983.2",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 10,
+				"defend": 15,
+				"dribble": 10,
+				"pass": 13,
+				"setup": 15,
+				"shoot": 10,
+				"freekick": 5,
+				"teamwork": [
+					26,
+					55
+				]
+			},
+			"stamina": 7,
+			"state": 2
+		},
+		{
+			"playerNumber": 5,
+			"name": "陈磊",
+			"birth": "1980.8",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 2,
+				"defend": 8,
+				"dribble": 12,
+				"pass": 14,
+				"setup": 10,
+				"shoot": 18,
+				"freekick": 11,
+				"teamwork": [
+					29,
+					80
+				]
+			},
+			"stamina": 11,
+			"state": 1
+		},
+		{
+			"playerNumber": 6,
+			"name": "赖力行",
+			"birth": "1983.8",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 7,
+				"defend": 11,
+				"dribble": 17,
+				"pass": 12,
+				"setup": 12,
+				"shoot": 16,
+				"freekick": 3,
+				"teamwork": [
+					19,
+					86
+				]
+			},
+			"stamina": 14,
+			"state": 4
+		},
+		{
+			"playerNumber": 7,
+			"name": "陈文星",
+			"birth": "1989.11",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 7,
+				"defend": 17,
+				"dribble": 10,
+				"pass": 11,
+				"setup": 13,
+				"shoot": 13,
+				"freekick": 20,
+				"teamwork": [
+					37,
+					78
+				]
+			},
+			"stamina": 14,
+			"state": 20
+		},
+		{
+			"playerNumber": 8,
+			"name": "戴路",
+			"birth": "1990.8",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 7,
+				"defend": 15,
+				"dribble": 13,
+				"pass": 14,
+				"setup": 14,
+				"shoot": 14,
+				"freekick": 3,
+				"teamwork": [
+					45,
+					84
+				]
+			},
+			"stamina": 15,
+			"state": 2
+		},
+		{
+			"playerNumber": 9,
+			"name": "赖力行儿子",
+			"birth": "1991.2",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 4,
+				"defend": 5,
+				"dribble": 11,
+				"pass": 13,
+				"setup": 13,
+				"shoot": 13,
+				"freekick": 1,
+				"teamwork": [
+					57,
+					86
+				]
+			},
+			"stamina": 15,
+			"state": 9
+		},
+		{
+			"playerNumber": 10,
+			"name": "陈磊儿子",
+			"birth": "1984.10",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 2,
+				"defend": 11,
+				"dribble": 11,
+				"pass": 14,
+				"setup": 12,
+				"shoot": 10,
+				"freekick": 13,
+				"teamwork": [
+					24,
+					67
+				]
+			},
+			"stamina": 10,
+			"state": 13
+		},
+		{
+			"playerNumber": 11,
+			"name": "陈文星儿子",
+			"birth": "1982.7",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 5,
+				"defend": 13,
+				"dribble": 13,
+				"pass": 11,
+				"setup": 9,
+				"shoot": 9,
+				"freekick": 18,
+				"teamwork": [
+					43,
+					72
+				]
+			},
+			"stamina": 12,
+			"state": 8
+		},
+		{
+			"playerNumber": 12,
+			"name": "陈晨儿子",
+			"birth": "1991.2",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 5,
+				"defend": 13,
+				"dribble": 11,
+				"pass": 12,
+				"setup": 11,
+				"shoot": 15,
+				"freekick": 18,
+				"teamwork": [
+					46,
+					68
+				]
+			},
+			"stamina": 7,
+			"state": 17
+		},
+		{
+			"playerNumber": 13,
+			"name": "戴路儿子",
+			"birth": "1989.9",
+			"national": "China",
+			"ability": {
+				"goalkeeper": 5,
+				"defend": 13,
+				"dribble": 11,
+				"pass": 16,
+				"setup": 12,
+				"shoot": 10,
+				"freekick": 10,
+				"teamwork": [
+					12,
+					19
+				]
+			},
+			"stamina": 3,
+			"state": 1
+		}
+	]
+}

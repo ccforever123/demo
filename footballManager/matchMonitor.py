@@ -17,8 +17,8 @@ def main():
     awayTeamData = getTeamData(awayTeamFile)
     teamAgainst = [homeTeamData['teamName'], awayTeamData['teamName']]
     # print(homeTeamFile, awayTeamFile)
-    homeLineup = getHomeFieldAbility(homeTeamData)  # 获取球队信息及阵型，并生成场上能力值， formation默认 = [4, 4, 2]
-    awayLineup = getAwayFieldAbility(awayTeamData)  # 获取球队信息及阵型，并生成场上能力值， formation默认 = [4, 4, 2]
+    homeLineup = getHomeFieldAbility(homeTeamData)  # 获取球队信息及阵型，并生成场上能力值， formation默认 = [3, 3, 3]
+    awayLineup = getAwayFieldAbility(awayTeamData)  # 获取球队信息及阵型，并生成场上能力值， formation默认 = [3, 3, 3]
     lineups = [homeLineup, awayLineup]
     startMatch(lineups, teamAgainst)
 
@@ -52,7 +52,7 @@ def startMatch(lineups, teamAgainst): # 开始比赛模拟
         defendTeamData = lineups[1 - rollResult]    # 判断防守球队阵容
         attackPlayerData = attackTeamData[ballx][bally]  # 定位进攻球员
         defendPlayerData = defendTeamData[ballx][bally] # 定位防守球员
-        print('==================== 第 {} 分钟 ===================='.format(minute))
+        print('==================================== 第 {} 分钟 ===================================='.format(minute))
         print('-> {} {} 拿到了球，他面对 {} 的防守'.format(teamAgainst[attackTeamIndex], attackPlayerData['name'], defendPlayerData['name']))
         faceGoalkeeper = 0
         while True: # 执行场上循环
@@ -86,7 +86,7 @@ def startMatch(lineups, teamAgainst): # 开始比赛模拟
             else:   # 否则，判断进攻球员动作
                 doAction = action(attackPlayerData)
                 if doAction == 'dribble':   # 过人
-                    print('-> {} {} 选择了过人...他面前的是{}'.format(teamAgainst[attackTeamIndex], attackPlayerData['name'], defendPlayerData['name']), end=' ')
+                    print('-> {} {} 选择了过人...他面前的是 {}...'.format(teamAgainst[attackTeamIndex], attackPlayerData['name'], defendPlayerData['name']), end=' ')
                     dribbleResult = actionDribble(attackPlayerData, defendPlayerData)
                     if dribbleResult == 1:  # 如果过人成功，则重新进入新的一轮球员动作判断
                         print('漂亮的过人！')
@@ -241,10 +241,6 @@ def actionPass(attackPlayerData, defendPlayerData, defendTeamData, ballx, newbal
         return 1
     else:
         return 0
-
-
-def actionSetup(attackPlayerData):
-    pass
 
 
 def shoot(attackPlayerData, goalkeeperData):
