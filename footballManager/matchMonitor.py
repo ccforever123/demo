@@ -37,7 +37,7 @@ def startMatch(lineups, teamAgainst): # 开始比赛模拟
     # print('{}\n{}'.format(lineups[0], lineups[1]))
     # 开始机会循环
     for chance in range(chances):
-        #初始化球的位置[2, 2]，球场宽度为[4, 4]，[门将, 后卫, 中场, 前锋]。 球门位于y轴中心，两只球队分列左右两侧，主场在左，客场在右
+        #初始化球的位置[2, 2]，球场宽度为[3, 3]，[门将, 后卫, 中场, 前锋]。 球门位于y轴中心，两只球队分列左右两侧，主场在左，客场在右
         minute = minuteList[chance] # 当前机会所在分钟数
         ballx = 2 # 初始化球场x轴位置
         bally = 2 # 初始化球场y轴位置
@@ -110,18 +110,18 @@ def startMatch(lineups, teamAgainst): # 开始比赛模拟
                         print('-> {} {} 正在控球'.format(teamAgainst[attackTeamIndex], attackPlayerData['name']))
                         continue
                 elif doAction == 'pass':    # 如果是传球，则横穿给任意球员
-                    print('-> {} {} 他...'.format(teamAgainst[attackTeamIndex], attackPlayerData['name']), end=' ')
+                    print('-> {} {} 他...想要把球传给 '.format(teamAgainst[attackTeamIndex], attackPlayerData['name']), end=' ')
                     yLenth = len(attackTeamData[ballx])  # 获取足球所在x轴当前y轴的长度
                     # 选择传球位置
                     newbally = random.randint(0, yLenth-1)    # 获取新的bally位置
                     # 判断是否传球成功，根据两个防守球员的防守数值的平均数
                     passResult = actionPass(attackPlayerData, defendPlayerData, defendTeamData, ballx, newbally, doAction)
-                    print('想要把球传给 {}'.format(attackPlayerData['name']), end=' ')
+                    bally = newbally
+                    attackPlayerData = attackTeamData[ballx][bally]
+                    defendPlayerData = defendTeamData[ballx][bally]
+                    print('{}。'.format(attackPlayerData['name']), end=' ')
                     # 更新球的位置及球员信息
                     if passResult == 1: # 如果传球成功，则更新足球坐标，进入新一轮球员动作判断
-                        bally = newbally
-                        attackPlayerData = attackTeamData[ballx][bally]
-                        defendPlayerData = defendTeamData[ballx][bally]
                         print('\n-> {} {} 接到了球，他正在观察。'.format(teamAgainst[attackTeamIndex], attackPlayerData['name']))
                         continue
                     else:   # 如果传球失败，则更新足球坐标，攻防方互换，进入新一轮球员动作判断
@@ -142,9 +142,7 @@ def startMatch(lineups, teamAgainst): # 开始比赛模拟
                         print('哦不，这是假动作，他居然晃过后卫，直接面对门将了！')
                         continue
                     ballx = newballx
-                    # print('newballx: {}'.format(newballx), end=' ')
                     yLenth = len(attackTeamData[ballx])  # 获取足球所在x轴当前y轴的长度
-                    # print('yLenth: {}'.format(yLenth))
                     newbally = random.randint(0, yLenth-1)    # 获取新的bally位置
                     # 判断传球是否成功，，根据两个防守球员的防守数值的平均数
                     setupResult = actionPass(attackPlayerData, defendPlayerData, defendTeamData, ballx, newbally, doAction)
@@ -154,7 +152,7 @@ def startMatch(lineups, teamAgainst): # 开始比赛模拟
                         bally = newbally
                         attackPlayerData = attackTeamData[ballx][bally]
                         defendPlayerData = defendTeamData[ballx][bally]
-                        print('{}'.format(attackPlayerData['name']))
+                        print('{}。'.format(attackPlayerData['name']))
                         continue
                     else:   # 如果传球失败，则更新足球坐标，攻防方互换，进入新一轮球员动作判断
                         bally = newbally
@@ -164,18 +162,17 @@ def startMatch(lineups, teamAgainst): # 开始比赛模拟
                         print('哎呀，可惜了。球被 {} 拦截了'.format(attackPlayerData['name']))   
                         attackTeamIndex = abs(1 - attackTeamIndex) 
                         continue
-    print('▶  比赛结束了，最后比分是{} {}:{} {}'.format(teamAgainst[0], score[0], score[1], teamAgainst[1]))
+    print('♬  比赛结束了，最后比分是 {} {}:{} {}  ♬'.format(teamAgainst[0], score[0], score[1], teamAgainst[1]))
 
 
 def getChances(chanceMin, chanceMax):
-    chances = random.randint(10, 20)
+    chances = random.randint(5, 20)
     minuteList = sorted(random.sample(range(1, 95), chances))
     return chances, minuteList
 
 
 def getHomeFieldAbility(teamData, formation = [3,3,3]):  # 获取球队信息及阵型，并返回首发阵容名单， 暂定 formation 仅支持 [3, 3, 3]
     playerSelects = random.sample(teamData['players'][3:], 9)
-    # print(playerSelects)
     lineupDict = {
         "goalkeeper": random.sample(teamData['players'][:3], 1),
         "defenders": playerSelects[:formation[0]],
@@ -188,7 +185,6 @@ def getHomeFieldAbility(teamData, formation = [3,3,3]):  # 获取球队信息及
 
 def getAwayFieldAbility(teamData, formation = [3,3,3]):  # 获取球队信息及阵型，并返回首发阵容名单， 暂定 formation 仅支持 [3, 3, 3]
     playerSelects = random.sample(teamData['players'][3:], 9)
-    # print(playerSelects)
     lineupDict = {
         "goalkeeper": random.sample(teamData['players'][:3], 1),
         "defenders": playerSelects[:formation[0]],
@@ -209,7 +205,6 @@ def roll():   # roll点决定球权
 
 def action(playerData): # 判断球员动作
     playerAction = round(random.random(), 2) * 100   # roll点判断动作，保留2位小数
-    # print(playerAction, playerData['ability']['teamwork'])
     if playerAction <= playerData['ability']['teamwork'][0]:    # 若roll点小于等于团队合作值0（过人）
         doAction = 'dribble'
     elif playerAction <= playerData['ability']['teamwork'][1]:    # 若roll点小于等于团队合作值1（横向传递）
@@ -232,7 +227,6 @@ def actionDribble(attackPlayer, defendPlayer):
 
 def actionPass(attackPlayerData, defendPlayerData, defendTeamData, ballx, newbally, doAction):
     passAbility = attackPlayerData['ability'][doAction]
-    # print('ballx: {}, newbally: {}'.format(ballx, newbally))
     defendPlayer2Data = defendTeamData[ballx][newbally]
     defendAbility = int((defendPlayerData['ability']['defend'] + defendPlayer2Data['ability']['defend'])/2)
     totalAbility = passAbility + defendAbility  # 总能力值
