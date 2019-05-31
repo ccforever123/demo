@@ -9,16 +9,16 @@ import time
 
 
 def main():
-    keyword = input('请输入关键词：')
+    keywords = input('请输入关键词：')
     searchDict = {
         "jd": 'https://so.m.jd.com/ware/search.action?keyword={}'.format(keyword),
         "suning": 'https://m.suning.com/search/{}/'.format(keyword),
         'taobao': 'https://ai.taobao.com/search/index.htm?pid=mm_10011550_0_0&unid=&source_id=search&key={}&b=sousuo_ssk&clk1=&prepvid=200_11.226.222.17_112680_1559266230975'.format(keyword),
     }
-    startSearch(keyword, searchDict)
+    startSearch(keywords, searchDict)
 
 
-def startSearch(keyword, searchDict):
+def startSearch(keywords, searchDict):
     timestamp = int(time.time())
     now = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
     resultDict = {
@@ -44,7 +44,7 @@ def startSearch(keyword, searchDict):
             pageSource = getSourceByRequests(url)
             resultDict = getTaobaoProductData(pageSource, resultDict)
             print('Taobao Data Saved')
-    saveData(resultDict, timestamp, keyword)
+    saveData(resultDict, timestamp, keywords)
 
 
 def getSourceByRequests(url):
@@ -121,15 +121,18 @@ def getTaobaoProductData(pageSource, resultDict):
     return resultDict
 
 
-def saveData(resultDict, timestamp, keyword):
+def saveData(resultDict, timestamp, keywords):
     now = resultDict['time']
+    text = '时间,产品名称,价格,销量,店铺\n'
+    with open('{}-{}.csv'.format(keywords, timestamp), 'w', encoding='gbk') as f:
+            f.write(text)
     for product in resultDict['productList']:
         productName = product['productName']
         price = product['price']
         sales = product['sales']
         shopName = product['shopName']
         text = '{},{},{},{},{}\n'.format(now, productName, price, sales, shopName)
-        with open('{}-{}.csv'.format(keyword, timestamp), 'a', encoding='gbk') as f:
+        with open('{}-{}.csv'.format(keywords, timestamp), 'a', encoding='gbk') as f:
             f.write(text)
 
 
