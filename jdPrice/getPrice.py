@@ -13,6 +13,7 @@ def main():
     searchDict = {
         "jd": 'https://so.m.jd.com/ware/search.action?keyword={}'.format(keyword),
         "suning": 'https://m.suning.com/search/{}/'.format(keyword),
+        'taobao': 'https://ai.taobao.com/search/index.htm?pid=mm_10011550_0_0&unid=&source_id=search&key={}&b=sousuo_ssk&clk1=&prepvid=200_11.226.222.17_112680_1559266230975'.format(keyword),
     }
     startSearch(keyword, searchDict)
 
@@ -25,29 +26,36 @@ def startSearch(keyword, searchDict):
             "time": now,
             "productList": [],
         }
-
-    print('timestamp: {}, {}'.format(timestamp, type(timestamp)))
     for urlTitle in searchDict:
         url = searchDict[urlTitle]
         # pageSource = getSourceByRequests(url)
         if urlTitle == 'jd':
-            print('Searching @ jd.com')
+            print('\nSearching @ jd.com')
             pageSource = getSourceByRequests(url)
             resultDict = getJDProductData(pageSource, resultDict)
             print('JD Data Saved')
         elif urlTitle == 'suning':
-            print('Searching @ suning.com')
+            print('\nSearching @ suning.com')
             pageSource = getSourceBySelenium(url)
             resultDict = getSuningProductData(pageSource, resultDict)
             print('Suning Data Saved')
+        elif urlTitle == 'taobao':
+            print('\nSearching @ taobao.com')
+            pageSource = getSourceByRequests(url)
+            resultDict = getTaobaoProductData(pageSource, resultDict)
+            print('Taobao Data Saved')
     saveData(resultDict, timestamp, keyword)
 
 
 def getSourceByRequests(url):
-    r = requests.get(url)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.79 Safari/537.36"
+    }
+    r = requests.get(url, headers=headers)
     source = r.text
-    # with open('source.txt', 'w', encoding='utf-8') as f:
-    #     f.write(source)
+    with open('source.html', 'w', encoding='utf-8') as f:
+        f.write(source)
+    print('SourceCode Saved.')
     return source
 
 
@@ -57,7 +65,7 @@ def getSourceBySelenium(url):
     driver.get(url)
     pageSource = driver.page_source
     driver.quit()
-    with open('source.txt', 'w', encoding='utf-8') as f:
+    with open('source.html', 'w', encoding='utf-8') as f:
         f.write(pageSource)
     print('SourceCode Saved.')
     return pageSource
@@ -80,14 +88,33 @@ def getJDProductData(pageSource, resultDict):
 
 
 def getSuningProductData(pageSource, resultDict):
-    reg_product = re.compile(r'class=\"project-label\">(.*?)</i>(.*?)</p>.*?￥<strong>(.*?)</strong>.*?<p class=\"shop-num\">.*?<em>(.*?)条评价</em>', re.S)
+    reg_product = re.compile(r'class=\"name\">(.*?)</p>.*?￥<strong>(.*?)</strong>(\..*?)</em>', re.S)
     products = reg_product.findall(pageSource)
-    for shopName, productName, price, sales in products:
+    for productName, price0, price1 in products:
         productDict = {
             "productName": productName,
-            "price": price,
-            "sales": sales,
-            "shopName": '苏宁' + shopName
+            "price": price0 + price1,
+            "sales": '',
+            "shopName": '苏宁店铺'
+        }
+        resultDict['productList'].append(productDict)
+        print('{}\t{}\t{}\t{}'.format(productDict['productName'], productDict['price'], productDict['sales'], productDict['shopName']))
+    return resultDict
+
+
+def getTaobaoProductData(pageSource, resultDict):
+    reg_product = re.compile(r'\"isTmall\":\"(.*?)\".*?\"sell\":\"(.*?)\",\"redKey.*?\"title\":\"(.*?)\".*?\"wangWangId\":\"(.*?)\",\"goodsPrice\":\"(.*?)\"')
+    products = reg_product.findall(pageSource)
+    for isTmall, sell, productName, shopName, price in products:
+        if isTmall == '1':
+            shopName = '天猫-' + shopName
+        price0 = price[:-2]
+        price1 = price[-2:]
+        productDict = {
+            "productName": productName,
+            "price": price0 + '.' + price1,
+            "sales": '',
+            "shopName": shopName
         }
         resultDict['productList'].append(productDict)
         print('{}\t{}\t{}\t{}'.format(productDict['productName'], productDict['price'], productDict['sales'], productDict['shopName']))
@@ -101,7 +128,7 @@ def saveData(resultDict, timestamp, keyword):
         price = product['price']
         sales = product['sales']
         shopName = product['shopName']
-        text = '{},{},{},{},{},{}\n'.format(timestamp, now, productName, price, sales, shopName)
+        text = '{},{},{},{},{}\n'.format(now, productName, price, sales, shopName)
         with open('{}-{}.csv'.format(keyword, timestamp), 'a', encoding='gbk') as f:
             f.write(text)
 
