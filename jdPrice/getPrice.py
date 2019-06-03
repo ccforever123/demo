@@ -11,9 +11,9 @@ import time
 def main():
     keywords = input('请输入关键词：')
     searchDict = {
-        "jd": 'https://so.m.jd.com/ware/search.action?keyword={}'.format(keyword),
-        "suning": 'https://m.suning.com/search/{}/'.format(keyword),
-        'taobao': 'https://ai.taobao.com/search/index.htm?pid=mm_10011550_0_0&unid=&source_id=search&key={}&b=sousuo_ssk&clk1=&prepvid=200_11.226.222.17_112680_1559266230975'.format(keyword),
+        "jd": 'https://so.m.jd.com/ware/search.action?keyword={}'.format(keywords),
+        "suning": 'https://m.suning.com/search/{}/'.format(keywords),
+        'taobao': 'https://ai.taobao.com/search/index.htm?pid=mm_10011550_0_0&unid=&source_id=search&key={}&b=sousuo_ssk&clk1=&prepvid=200_11.226.222.17_112680_1559266230975'.format(keywords),
     }
     startSearch(keywords, searchDict)
 
@@ -80,7 +80,7 @@ def getJDProductData(pageSource, resultDict):
             "productName": product.split('  ')[-1],
             "price": price,
             "sales": sales,
-            "shopName": shopName
+            "shopName": '京东-' + shopName
         }
         resultDict['productList'].append(productDict)
         print('{}\t{}\t{}\t{}'.format(productDict['productName'], productDict['price'], productDict['sales'], productDict['shopName']))
@@ -108,12 +108,14 @@ def getTaobaoProductData(pageSource, resultDict):
     for isTmall, sell, productName, shopName, price in products:
         if isTmall == '1':
             shopName = '天猫-' + shopName
+        else:
+            shopName = '淘宝' + shopName
         price0 = price[:-2]
         price1 = price[-2:]
         productDict = {
             "productName": productName,
             "price": price0 + '.' + price1,
-            "sales": '',
+            "sales": sell,
             "shopName": shopName
         }
         resultDict['productList'].append(productDict)
