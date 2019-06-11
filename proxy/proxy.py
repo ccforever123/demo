@@ -71,7 +71,7 @@ def checkProxy(proxy, proxy_type, headers):
             if status_code == 200:
                 return True
             return False
-        except Exception as e:
+        except:
             pass
 
 if __name__ == "__main__":
