@@ -13,18 +13,23 @@ def main():
     for widget in widgetList:
         widgetType, styleDict = seperate_widget_type(widget)
         if widgetType == 'IMAGE':
-            type_image(im, styleDict, sourcePath)
+            im = type_IMAGE(im, styleDict, sourcePath)
         elif widgetType == 'TEXTUREMAPPER':
-            pass
-        elif widgetType == 'TEXTUREMAPPER':
-            pass
-        elif widgetType == 'TEXTUREMAPPER':
-            pass
-        elif widgetType == 'TEXTUREMAPPER':
-            pass
-        elif widgetType == 'TEXTUREMAPPER':
-            pass
-
+            im = type_TEXTUREMAPPER(im, styleDict, sourcePath)
+        elif widgetType == 'CIRCLE':
+            im = type_CIRCLE(im, styleDict, sourcePath)
+        elif widgetType == 'LINE':
+            im = type_LINE(im, styleDict, sourcePath)
+        elif widgetType == 'TEXTAREAWITHONEWILDCARD':
+            im = type_TEXTAREAWITHONEWILDCARD(im, styleDict, sourcePath)
+        elif widgetType == 'BOX':
+            im = type_BOX(im, styleDict, sourcePath)
+        elif widgetType == 'SELECTIMAGE':
+            im = type_SELECTIMAGE(im, styleDict, sourcePath)
+        elif widgetType == 'TEXTAREAWITHTWOWILDCARD':
+            im = type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath)
+        else:
+            print('Error: Missing the widget type: {}'.format(widgetType))
 
 
 def read_file(filename):    # get file content
@@ -55,7 +60,7 @@ def seperate_widget_type(widget):    # seperate the widget type
     return widgetType, styleDict
 
 
-def type_image(im, styleDict, sourcePath):
+def type_IMAGE(im, styleDict, sourcePath):
     resName = styleDict['res_name']
     x = int(styleDict['x'])
     y = int(styleDict['y'])
@@ -64,6 +69,35 @@ def type_image(im, styleDict, sourcePath):
     r,g,b,a = img.split()
     im.paste(img, (x,y), mask=a)
     return im
+
+
+def type_TEXTUREMAPPER(im, styleDict, sourcePath):
+    pass
+
+
+def type_CIRCLE(im, styleDict, sourcePath):
+    pass
+
+
+def type_LINE(im, styleDict, sourcePath):
+    pass
+
+
+def type_TEXTAREAWITHONEWILDCARD(im, styleDict, sourcePath):
+    pass
+
+
+def type_BOX(im, styleDict, sourcePath):
+    pass
+
+
+def type_SELECTIMAGE(im, styleDict, sourcePath):
+    pass
+
+
+def type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath):
+    pass
+
 
 
 
