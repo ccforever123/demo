@@ -30,6 +30,7 @@ def main():
             im = type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath)
         else:
             print('Error: Missing the widget type: {}'.format(widgetType))
+    im.show()
 
 
 def read_file(filename):    # get file content
@@ -60,19 +61,42 @@ def seperate_widget_type(widget):    # seperate the widget type
     return widgetType, styleDict
 
 
+def open_image(resName, sourcePath):
+    imageFile = os.path.join(sourcePath, resName)
+    img = Image.open(imageFile)
+    r,g,b,a = img.split()
+    img.show()
+    return img, a
+
+
 def type_IMAGE(im, styleDict, sourcePath):
     resName = styleDict['res_name']
     x = int(styleDict['x'])
     y = int(styleDict['y'])
-    imageFile = os.path.join(sourcePath, resName)
-    img = Image.open(imageFile)
-    r,g,b,a = img.split()
+    img, a = open_image(resName, sourcePath)
     im.paste(img, (x,y), mask=a)
     return im
 
 
 def type_TEXTUREMAPPER(im, styleDict, sourcePath):
-    pass
+    resName = styleDict['res_name'] # 引用的图片ID
+    drawableX = int(styleDict['drawable_x'])    # 图片旋转绘制区域左上角X坐标
+    drawableY = int(styleDict['drawable_y'])    # 图片旋转绘制区域左上角Y坐标
+    drawableWidth = int(styleDict['drawable_width'])    # 图片旋转绘制区域宽度
+    drawableHeight = int(styleDict['drawable_height'])  # 图片旋转绘制区域高度
+    rotationCenterX = int(styleDict['rotation_center_x'])  # 旋转中心在图片上的x坐标
+    rotationCenterY = int(styleDict['rotation_center_y'])  # 旋转中心在图片上的y坐标
+    beginArc = int(styleDict['begin_arc'])  # 旋转起始角度
+    endArc = int(styleDict['end_arc'])  # 旋转终止角度
+    dataType = styleDict['data_type']  # 数据类型
+
+    img, a = open_image(resName, sourcePath)
+    imgWidth, imgHeight = img.size
+    x = rotationCenterX - imgWidth / 2
+    y = rotationCenterY - imgHeight
+    im.paste(img, (x,y), mask=a)
+    return im
+
 
 
 def type_CIRCLE(im, styleDict, sourcePath):
@@ -97,8 +121,6 @@ def type_SELECTIMAGE(im, styleDict, sourcePath):
 
 def type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath):
     pass
-
-
 
 
 if __name__ == "__main__":
