@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HwTheme>
+    <title>amazfit</title>
+    <title-cn>amazfit</title-cn>
+    <author>design by 杨啸林, modified by 松鼠男</author>
+    <designer>design by 杨啸林, modified by 松鼠男</designer>
+    <screen>HWHD02</screen>
+    <version>2.2.1</version>
+    <font>Default</font>
+    <font-cn>默认</font-cn>
+    <briefinfo>1、指针加红色\n 2、去除数字显示</briefinfo>
+</HwTheme>

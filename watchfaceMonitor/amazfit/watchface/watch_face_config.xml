@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<providers>
+    <TemplateWatch dpi="454">
+        <Widget widget_type="IMAGE">
+            <Image 
+                lable="backgroud"
+                type="static"
+                x="0"
+                y="0"
+                res_name="A100_002.png"
+            />
+        </Widget>
+
+		<Widget widget_type="CIRCLE">
+            <Circle
+                lable="power circle"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                circle_x="112"
+                circle_y="305"
+                circle_r="51"
+                line_width="4"
+                arc_start="0"
+                arc_end="360"
+                update_arc_start="0"
+                precision="3"
+                data_type="DATA_POWER_RATIO"
+                res_name="A100_003.png"
+            />
+        </Widget>
+
+
+	    <Widget widget_type="CIRCLE">
+            <Circle
+                lable="steps circle"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                circle_x="228"
+                circle_y="356"
+                circle_r="49"
+                line_width="4"
+                arc_start="0"
+                arc_end="360"
+                update_arc_start="0"
+                precision="3"
+                data_type="DATA_STEPS_RATIO"
+                res_name="A100_004.png"
+            />
+        </Widget>
+
+		<Widget widget_type="CIRCLE">
+            <Circle
+                lable="heartrate circle"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                circle_x="344"
+                circle_y="308"
+                circle_r="48"
+                line_width="4"
+                arc_start="0"
+                arc_end="360"
+                update_arc_start="0"
+                precision="3"
+                data_type="DATA_HEARTRATE_RATIO"
+                res_name="A100_005.png"
+            />
+        </Widget>
+
+		<Widget widget_type="IMAGE">
+            <Image
+                lable="dianliang img"
+                type="static"
+                x="105"
+                y="282"
+                res_name="A100_006.png"
+            />
+        </Widget>
+
+		<Widget widget_type="TEXTAREAWITHTWOWILDCARD">
+            <TextAreaWithTwoWildCard 
+                lable="power_text"
+                type="static"
+                drawable_x="87"
+                drawable_y="295"
+                drawable_width="52"
+                drawable_height="37"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                line_spacing="0"
+                alpha="255"
+                font_type="F_HYQIHEI_60S_20"
+                alignment_type="CENTER"
+                data_connector_type="CONN_PERCENT"
+                data_type="DATA_POWER"
+                data2_type="DATA_NULL"
+            />
+        </Widget>
+
+		<Widget widget_type="IMAGE">
+            <Image
+                lable="bushu img"
+                type="static"
+                x="216"
+                y="325"
+                res_name="A100_008.png"
+            />
+        </Widget>
+
+		<Widget widget_type="TEXTAREAWITHONEWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="bushu text"
+                type="static"
+                drawable_x="199"
+                drawable_y="345"
+                drawable_width="60"
+                drawable_height="33"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                data_type="DATA_STEPS"
+                line_spacing="0"
+                alignment_type="CENTER"
+                font_type="F_HYQIHEI_60S_20"
+                alpha="255"
+            />
+        </Widget>
+
+		<Widget widget_type="IMAGE">
+            <Image
+                lable="xinlv img"
+                type="static"
+                x="330"
+                y="277"
+                res_name="A100_007.png"
+            />
+        </Widget>
+
+		<Widget widget_type="TEXTAREAWITHONEWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="xinlv text"
+                type="static"
+                drawable_x="323"
+                drawable_y="290"
+                drawable_width="43"
+                drawable_height="38"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                data_type="DATA_HEARTRATE"
+                line_spacing="0"
+                alignment_type="CENTER"
+                font_type="F_HYQIHEI_60S_23"
+                alpha="255"
+            />
+        </Widget>
+
+        <Widget widget_type="TEXTAREAWITHTWOWILDCARD">
+            <TextAreaWithTwoWildCard 
+                lable="date_text"
+                type="static"
+                drawable_x="151"
+                drawable_y="105"
+                drawable_width="73"
+                drawable_height="27"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                line_spacing="0"
+                alpha="255"
+                font_type="F_HYQIHEI_60S_26"
+                alignment_type="CENTER"
+                data_connector_type="CONN_STUB"
+                data_type="DATA_MONTH"
+                data2_type="DATA_DATE"
+            />
+        </Widget>
+
+		<Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="week"
+                type="static"
+                drawable_x="230"
+                drawable_y="110"
+                data_type="DATA_WEEK"
+            />
+            <ImagesList
+                res_0="A100_037.png"
+                res_1="A100_031.png"
+                res_2="A100_032.png"
+                res_3="A100_033.png"
+                res_4="A100_034.png"
+                res_5="A100_035.png"
+                res_6="A100_036.png"
+                res_7="A100_037.png"
+                res_8=""
+                res_9=""
+                res_10=""
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>
+
+<!--
+		<Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="shizhengaowei meiju"
+                type="static"
+                drawable_x="100"
+                drawable_y="121"
+                data_type="DATA_HOUR_HIGH"
+            />
+            <ImagesList
+                res_0="A100_010.png"
+                res_1="A100_011.png"
+                res_2="A100_012.png"
+                res_3="A100_013.png"
+                res_4="A100_014.png"
+                res_5="A100_015.png"
+                res_6="A100_016.png"
+                res_7="A100_017.png"
+                res_8="A100_018.png"
+                res_9="A100_019.png"
+                res_10=""
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>
+
+
+		<Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="shizhendiwei meiju"
+                type="static"
+                drawable_x="147"
+                drawable_y="121"
+                data_type="DATA_HOUR_LOW"
+            />
+            <ImagesList
+                res_0="A100_010.png"
+                res_1="A100_011.png"
+                res_2="A100_012.png"
+                res_3="A100_013.png"
+                res_4="A100_014.png"
+                res_5="A100_015.png"
+                res_6="A100_016.png"
+                res_7="A100_017.png"
+                res_8="A100_018.png"
+                res_9="A100_019.png"
+                res_10=""
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>
+
+		<Widget widget_type="IMAGE">
+            <Image
+                lable="maohao"
+                type="static"
+                x="213"
+                y="122"
+                res_name="A100_020.png"
+            />
+        </Widget>
+
+        <Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="fenzhengaowei meiju"
+                type="static"
+                drawable_x="240"
+                drawable_y="121"
+                data_type="DATA_MINITE_HIGH"
+            />
+            <ImagesList
+                res_0="A100_010.png"
+                res_1="A100_011.png"
+                res_2="A100_012.png"
+                res_3="A100_013.png"
+                res_4="A100_014.png"
+                res_5="A100_015.png"
+                res_6="A100_016.png"
+                res_7="A100_017.png"
+                res_8="A100_018.png"
+                res_9="A100_019.png"
+                res_10=""
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>
+
+		 <Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="fenzhendiwei meiju"
+                type="static"
+                drawable_x="292"
+                drawable_y="121"
+                data_type="DATA_MINITE_LOW"
+            />
+            <ImagesList
+                res_0="A100_010.png"
+                res_1="A100_011.png"
+                res_2="A100_012.png"
+                res_3="A100_013.png"
+                res_4="A100_014.png"
+                res_5="A100_015.png"
+                res_6="A100_016.png"
+                res_7="A100_017.png"
+                res_8="A100_018.png"
+                res_9="A100_019.png"
+                res_10=""
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>	 
+
+-->
+		<Widget widget_type="TEXTUREMAPPER">
+            <TextureMapper
+                lable="hour_hand"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                rotation_center_x="38"
+                rotation_center_y="227"
+                begin_arc="0"
+                end_arc="360"
+                data_type="DATA_HOUR12_RATIO"
+                res_name="A100_021.png"
+            />
+        </Widget>
+       
+        <Widget widget_type="TEXTUREMAPPER">
+            <TextureMapper
+                lable="minite_hand"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                rotation_center_x="38"
+                rotation_center_y="227"
+                begin_arc="0"
+                end_arc="360"
+                data_type="DATA_MINITE_RATIO"
+                res_name="A100_022.png"
+            />
+        </Widget>
+       
+        <Widget widget_type="TEXTUREMAPPER">
+            <TextureMapper 
+                lable="second_hand"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                rotation_center_x="38"
+                rotation_center_y="227"
+                begin_arc="0"
+                end_arc="360"
+                data_type="DATA_SECOND_RATIO"
+                res_name="A100_023.png"
+            />
+        </Widget>
+
+		
+
+    </TemplateWatch>
+</providers>

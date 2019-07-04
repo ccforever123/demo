@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HwTheme>
+    <title>meiju</title>
+    <title-cn>amazfit移植1</title-cn>
+    <author>杨啸林</author>
+    <designer>杨啸林</designer>
+    <screen>HWHD02</screen>
+    <version>2.1.6</version>
+    <font>Default</font>
+    <font-cn>默认</font-cn>
+    <briefinfo>从amazfit那里移植来的，共享此表盘包括源码</briefinfo>
+</HwTheme>
