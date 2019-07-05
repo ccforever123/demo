@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<providers>
+    <TemplateWatch dpi="454">
+        <Widget widget_type="IMAGE">
+            <Image 
+                lable="backgroud"
+                type="static"
+                x="0"
+                y="0"
+                res_name="A100_002.png"
+            />
+        </Widget>
+
+        <Widget widget_type="TEXTAREAWITHONEWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="steps text"
+                type="static"
+                drawable_x="87"
+                drawable_y="226"
+                drawable_width="75"
+                drawable_height="27"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                data_type="DATA_STEPS"
+                line_spacing="0"
+                alignment_type="CENTER"
+                font_type="F_ROBOTOCONDENSED_REGULAR_30"
+                alpha="255"
+            />
+        </Widget>
+
+        <Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="week"
+                type="static"
+                drawable_x="191"
+                drawable_y="128"
+                data_type="DATA_WEEK"
+            />
+            <ImagesList
+                res_0="A100_027.png"
+                res_1="A100_021.png"
+                res_2="A100_022.png"
+                res_3="A100_023.png"
+                res_4="A100_024.png"
+                res_5="A100_025.png"
+                res_6="A100_026.png"
+                res_7="A100_027.png"
+                res_8=""
+                res_9=""
+                res_10=""
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>
+
+        <Widget widget_type="TEXTAREAWITHONEWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="date text"
+                type="static"
+                drawable_x="237"
+                drawable_y="128"
+                drawable_width="22"
+                drawable_height="20"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                data_type="DATA_DATE"
+                line_spacing="0"
+                alignment_type="CENTER"
+                font_type="F_ROBOTOCONDENSED_REGULAR_26"
+                alpha="255"
+            />
+        </Widget>
+
+        <Widget widget_type="TEXTAREAWITHTWOWILDCARD">
+            <TextAreaWithTwoWildCard 
+                lable="power_date_text"
+                type="static"
+                drawable_x="304"
+                drawable_y="227"
+                drawable_width="73"
+                drawable_height="27"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                line_spacing="0"
+                alpha="255"
+                font_type="F_ROBOTOCONDENSED_REGULAR_30"
+                alignment_type="CENTER"
+                data_connector_type="CONN_PERCENT"
+                data_type="DATA_POWER"
+                data2_type="DATA_NULL"
+            />
+        </Widget>
+
+        <Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="heartrate zone image"
+                type="static"
+                drawable_x="156"
+                drawable_y="256"
+                data_type="DATA_HEARTRATE"
+            />
+            <ImagesList
+                res_0="A100_003.png"
+                res_1="A100_004.png"
+                res_2="A100_005.png"
+                res_3="A100_006.png"
+                res_4="A100_007.png"
+                res_5="A100_008.png"
+                res_6=""
+                res_7=""
+                res_8=""
+                res_9=""
+                res_10=""
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>
+
+        <Widget widget_type="CIRCLE">
+            <Circle
+                lable="steps circle"
+                type="static"
+                drawable_x="54"
+                drawable_y="54"
+                drawable_width="346"
+                drawable_height="346"
+                circle_x="173"
+                circle_y="173"
+                circle_r="162"
+                line_width="22"
+                arc_start="245"
+                arc_end="294"
+                update_arc_start="245"
+                precision="6"
+                data_type="DATA_STEPS_RATIO"
+                res_name="A100_015.png"
+            />
+        </Widget>
+
+
+        <Widget widget_type="CIRCLE">
+            <Circle
+                lable="steps circle"
+                type="static"
+                drawable_x="54"
+                drawable_y="54"
+                drawable_width="346"
+                drawable_height="346"
+                circle_x="173"
+                circle_y="173"
+                circle_r="162"
+                line_width="22"
+                arc_start="114"
+                arc_end="66"
+                update_arc_start="114"
+                precision="6"
+                data_type="DATA_POWER_RATIO"
+                res_name="A100_015.png"
+            />
+        </Widget>
+
+        <Widget widget_type="TEXTAREAWITHONEWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="heartrate text"
+                type="static"
+                drawable_x="194"
+                drawable_y="326"
+                drawable_width="65"
+                drawable_height="27"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                data_type="DATA_HEARTRATE"
+                line_spacing="0"
+                alignment_type="CENTER"
+                font_type="F_ROBOTOCONDENSED_REGULAR_30"
+                alpha="255"
+            />
+        </Widget>
+
+<!--
+        <Widget widget_type="TEXTUREMAPPER">
+            <TextureMapper
+                lable="hour24 hand"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                rotation_center_x="25"
+                rotation_center_y="227"
+                begin_arc="0"
+                end_arc="360"
+                data_type="DATA_HOUR24_RATIO"
+                res_name="A100_019.png"
+            />
+        </Widget>
+-->
+
+        <Widget widget_type="TEXTUREMAPPER">
+            <TextureMapper
+                lable="hour_hand"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                rotation_center_x="25"
+                rotation_center_y="227"
+                begin_arc="0"
+                end_arc="360"
+                data_type="DATA_HOUR12_RATIO"
+                res_name="A100_009.png"
+            />
+        </Widget>
+        <Widget widget_type="IMAGE">
+            <Image
+                lable="hour_cap"
+                type="static"
+                x="202"
+                y="202"
+                res_name="A100_012.png"
+            />
+        </Widget>
+        <Widget widget_type="TEXTUREMAPPER">
+            <TextureMapper
+                lable="minite_hand"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                rotation_center_x="25"
+                rotation_center_y="227"
+                begin_arc="0"
+                end_arc="360"
+                data_type="DATA_MINITE_RATIO"
+                res_name="A100_011.png"
+            />
+        </Widget>
+        <Widget widget_type="IMAGE">
+            <Image
+                lable="minite_cap"
+                type="static"
+                x="204"
+                y="204"
+                res_name="A100_013.png"
+            />
+        </Widget>
+        <Widget widget_type="TEXTUREMAPPER">
+            <TextureMapper 
+                lable="second_hand"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                rotation_center_x="25"
+                rotation_center_y="227"
+                begin_arc="0"
+                end_arc="360"
+                data_type="DATA_SECOND_RATIO"
+                res_name="A100_010.png"
+            />
+        </Widget>
+        <Widget widget_type="IMAGE">
+            <Image
+                lable="second_cap"
+                type="static"
+                x="204"
+                y="204"
+                res_name="A100_020.png"
+            />
+        </Widget>
+    </TemplateWatch>
+</providers>

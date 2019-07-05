@@ -8,7 +8,7 @@ import time
 # import numpy as np
 
 def main():
-    path = os.path.join(os.getcwd(), 'amazfit')
+    path = os.path.join(os.getcwd(), 'fortuna_watch_12hours')
     watchfaceConfigFile = os.path.join(path, 'watchface\\watch_face_config.xml')
     sourcePath = os.path.join(path, 'watchface\\res')
     content = read_file(watchfaceConfigFile)
@@ -106,8 +106,10 @@ def type_TEXTUREMAPPER(im, styleDict, sourcePath):  # 图片旋转，如时分�
 
     img, a = open_image(resName, sourcePath)
     imgWidth, imgHeight = img.size
-    x = int(rotationCenterX - imgWidth / 2)
-    y = rotationCenterY - imgHeight
+    # x = int(rotationCenterX - imgWidth / 2)
+    x = int((drawableWidth - imgWidth) / 2)
+    # y = rotationCenterY - imgHeight
+    y = int((drawableHeight - imgHeight) / 2)
     im.paste(img, (x,y), mask=a)
     return im
 
@@ -199,9 +201,9 @@ def type_SELECTIMAGE(im, styleDict, sourcePath):    # 随着订阅的数据类�
     res13 = styleDict['res_13']  # 序列帧第14幅图片ID
     res14 = styleDict['res_14']  # 序列帧第15幅图片ID
     resList = [res0, res1, res2, res3, res4, res5, res6, res7, res8, res9, res10, res11, res12, res13, res14]
-    resIndex = get_data_type[dataType]
+    resIndex = int(get_data_type(dataType))
     img, a = open_image(resList[resIndex], sourcePath)
-    im.paste(img, (x,y), mask=a)
+    im.paste(img, (drawableX, drawableY), mask=a)
 
     return im
 

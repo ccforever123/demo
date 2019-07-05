@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HwTheme>
+    <title>12-hour Time</title>
+    <title-cn>12小时制</title-cn>
+    <author>华为</author>
+    <designer>华为</designer>
+    <screen>HWHD02</screen>
+    <version>2.1.6</version>
+    <font>Default</font>
+    <font-cn>默认</font-cn>
+    <briefinfo>12小时制表盘</briefinfo>
+</HwTheme>
