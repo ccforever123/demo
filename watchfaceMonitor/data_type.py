@@ -37,7 +37,7 @@ def get_data_type(data_type):
     elif data_type == 'DATA_VO2MAX':   # 最大摄氧量
         return '99'
     elif data_type == 'DATA_DATE':   # 日期
-        pass
+        return 19
     elif data_type == 'DATA_HEARTRATE_MAX':   # 心率最大值
         return '99'
     elif data_type == 'DATA_HEARTRATE_MIN':   # 心率最小值
@@ -47,7 +47,7 @@ def get_data_type(data_type):
     elif data_type == 'DATA_MONTH':   # 月份
         pass
     elif data_type == 'DATA_WEEK':   # 周
-        pass
+        return 1
     elif data_type == 'DATA_WEATHERTYPE':   # 天气
         pass
     elif data_type == 'DATA_POWER_ENUM':   # 电量
