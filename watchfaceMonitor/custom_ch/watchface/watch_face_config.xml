@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<providers>
+    <TemplateWatch dpi="454">
+    <!-- 背景图 -->
+        <Widget widget_type="IMAGE">
+            <Image 
+                lable="backgroud"
+                type="static"
+                x="0"
+                y="0"
+                res_name="A100_002.png"
+            />
+        </Widget>
+        <!-- 步数图片 -->
+         <Widget widget_type="IMAGE">
+            <Image 
+                lable="backgroud"
+                type="static"
+                x="212"
+                y="350"
+                res_name="A100_016.png"
+            />
+        </Widget>
+        <!-- 天气图片 -->
+            <Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="weather"
+                type="static"
+                drawable_x="102"
+                drawable_y="190"
+                data_type="DATA_WEATHERTYPE"
+            />
+            <ImagesList
+                res_0="A100_021.png"
+                res_1="A100_021.png"
+                res_2="A100_022.png"
+                res_3="A100_023.png"
+                res_4="A100_024.png"
+                res_5="A100_025.png"
+                res_6="A100_026.png"
+                res_7="A100_027.png"
+                res_8="A100_028.png"
+                res_9="A100_029.png"
+                res_10="A100_029.png"
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>
+
+<!-- 步数 -->
+        <Widget widget_type="TEXTAREAWITHONEWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="steps text"
+                type="static"
+                drawable_x="194"
+                drawable_y="310"
+                drawable_width="64"
+                drawable_height="27"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                data_type="DATA_STEPS"
+                line_spacing="0"
+                alignment_type="CENTER"
+                font_type="F_ROBOTOCONDENSED_REGULAR_30"
+                alpha="255"
+            />
+        </Widget>
+<!-- 星期 -->
+        <Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="week"
+                type="static"
+                drawable_x="260"
+                drawable_y="168"
+                data_type="DATA_WEEK"
+            />
+            <ImagesList
+                res_0="A100_003.png"
+                res_1="A100_003.png"
+                res_2="A100_004.png"
+                res_3="A100_005.png"
+                res_4="A100_006.png"
+                res_5="A100_007.png"
+                res_6="A100_008.png"
+                res_7="A100_015.png"
+                res_8=""
+                res_9=""
+                res_10=""
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>
+<!-- 日期  月-日 -->
+         <Widget widget_type="TEXTAREAWITHTWOWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="date text"
+                type="static"
+                drawable_x="295"
+                drawable_y="210"
+                drawable_width="52"
+                drawable_height="30"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                data_type="DATA_MONTH"
+                data_connector_type="CONN_STUB"
+                data2_type="DATA_DATE"
+                line_spacing="0"
+                alignment_type="CENTER"
+                font_type="F_ROBOTOCONDENSED_REGULAR_30"
+                alpha="255"
+            />
+        </Widget>
+        <!-- 心率比 -->
+         <Widget widget_type="CIRCLE">
+            <Circle
+                lable="heartrate circle"
+                type="static"
+                drawable_x="177"
+                drawable_y="275"
+                drawable_width="100"
+                drawable_height="100"
+                circle_x="50"
+                circle_y="50"
+                circle_r="46"
+                line_width="8"
+                arc_start="204"
+                arc_end="334"
+                update_arc_start="204"
+                precision="5"
+                data_type="DATA_HEARTRATE_RATIO"
+                res_name="A100_019.png"
+            />
+        </Widget>
+        <!-- 电量比 -->
+        <Widget widget_type="CIRCLE">
+            <Circle
+                lable="power circle"
+                type="static"
+                drawable_x="177"
+                drawable_y="275"
+                drawable_width="100"
+                drawable_height="100"
+                circle_x="50"
+                circle_y="50"
+                circle_r="46"
+                line_width="8"
+                arc_start="156"
+                arc_end="26"
+                update_arc_start="156"
+                precision="5"
+                data_type="DATA_POWER_RATIO"
+                res_name="A100_019.png"
+            />
+        </Widget>
+        <!-- 心率数字 -->
+         <Widget widget_type="TEXTAREAWITHONEWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="heartrate text"
+                type="static"
+                drawable_x="102"
+                drawable_y="314"
+                drawable_width="65"
+                drawable_height="27"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                data_type="DATA_HEARTRATE"
+                line_spacing="0"
+                alignment_type="RIGHT"
+                font_type="F_ROBOTOCONDENSED_REGULAR_30"
+                alpha="255"
+            />
+        </Widget>
+<!-- 电量数字 -->
+        <Widget widget_type="TEXTAREAWITHTWOWILDCARD">
+            <TextAreaWithTwoWildCard 
+                lable="power_date_text"
+                type="static"
+                drawable_x="290"
+                drawable_y="314"
+                drawable_width="73"
+                drawable_height="27"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                line_spacing="0"
+                alpha="255"
+                font_type="F_ROBOTOCONDENSED_REGULAR_30"
+                alignment_type="LEFT"
+                data_connector_type="CONN_PERCENT"
+                data_type="DATA_POWER"
+                data2_type="DATA_NULL"
+            />
+        </Widget>
+        <!-- 温度数字 -->
+        <Widget widget_type="TEXTAREAWITHONEWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="tempature text"
+                type="static"
+                drawable_x="108"
+                drawable_y="235"
+                drawable_width="42"
+                drawable_height="27"
+                color_red="255"
+                color_green="255"
+                color_blue="255"
+                data_type="DATA_TEMPERATURE"
+                line_spacing="0"
+                alignment_type="CENTER"
+                font_type="F_ROBOTOCONDENSED_REGULAR_30"
+                alpha="255"
+            />
+        </Widget>
+        <!-- 表针 -->
+        <Widget widget_type="TEXTUREMAPPER">
+            <TextureMapper
+                lable="hour_hand"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                rotation_center_x="25"
+                rotation_center_y="227"
+                begin_arc="0"
+                end_arc="360"
+                data_type="DATA_HOUR12_RATIO"
+                res_name="A100_009.png"
+            />
+        </Widget>
+        <Widget widget_type="IMAGE">
+            <Image
+                lable="hour_cap"
+                type="static"
+                x="202"
+                y="202"
+                res_name="A100_012.png"
+            />
+        </Widget>
+        <Widget widget_type="TEXTUREMAPPER">
+            <TextureMapper
+                lable="minite_hand"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                rotation_center_x="25"
+                rotation_center_y="227"
+                begin_arc="0"
+                end_arc="360"
+                data_type="DATA_MINITE_RATIO"
+                res_name="A100_011.png"
+            />
+        </Widget>
+        <Widget widget_type="IMAGE">
+            <Image
+                lable="minite_cap"
+                type="static"
+                x="204"
+                y="204"
+                res_name="A100_013.png"
+            />
+        </Widget>
+        <Widget widget_type="TEXTUREMAPPER">
+            <TextureMapper 
+                lable="second_hand"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                rotation_center_x="25"
+                rotation_center_y="227"
+                begin_arc="0"
+                end_arc="360"
+                data_type="DATA_SECOND_RATIO"
+                res_name="A100_010.png"
+            />
+        </Widget>
+        <Widget widget_type="IMAGE">
+            <Image
+                lable="second_cap"
+                type="static"
+                x="204"
+                y="204"
+                res_name="A100_020.png"
+            />
+        </Widget>
+    </TemplateWatch>
+</providers>

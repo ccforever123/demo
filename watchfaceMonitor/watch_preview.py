@@ -3,12 +3,13 @@ import re
 from PIL import Image, ImageDraw, ImageFont
 from data_type import get_data_type
 from font_type import get_font_type
+from data_connector_type import get_connector_type
 import time
 # import cv2
 # import numpy as np
 
 def main():
-    path = os.path.join(os.getcwd(), 'fortuna_watch_12hours')
+    path = os.path.join(os.getcwd(), 'custom_ch')
     watchfaceConfigFile = os.path.join(path, 'watchface\\watch_face_config.xml')
     sourcePath = os.path.join(path, 'watchface\\res')
     content = read_file(watchfaceConfigFile)
@@ -47,7 +48,7 @@ def get_time():
     return month, date, hour, minute, second
 
 def read_file(filename):    # get file content
-    with open(filename, 'r') as f:
+    with open(filename, 'r', encoding='utf-8') as f:
         content = f.read()
     return content
 
@@ -164,7 +165,7 @@ def type_TEXTAREAWITHONEWILDCARD(im, styleDict, sourcePath):    # 动态文本�
     data = get_data_type(dataType)
     fontFile, fontsize = get_font_type(fontType)
     font = ImageFont.truetype(fontFile, fontsize)
-    ImageDraw.Draw(im).text((drawableX, drawableY), data, (colorRed, colorGreen, colorBlue), font=font)
+    ImageDraw.Draw(im).text((drawableX, drawableY), str(data), (colorRed, colorGreen, colorBlue), font=font)
 
     return im
 
@@ -224,6 +225,14 @@ def type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath):    # 带连接符�
     alignmentType = styleDict['alignment_type']    # 对齐方式(LEFT或CENTER或RIGHT)
     fontType = styleDict['font_type']    # 字体字号
     alpha = int(styleDict['alpha'])    # 文本的透明度值
+
+    dataConnector = get_connector_type(dataCconnectorType)
+    print(get_data_type(dataType), dataCconnectorType, get_data_type(data2Type))
+    data = str(get_data_type(dataType)) + dataConnector + str(get_data_type(data2Type))
+    fontFile, fontsize = get_font_type(fontType)
+    font = ImageFont.truetype(fontFile, fontsize)
+
+    ImageDraw.Draw(im).text((drawableX, drawableY), str(data), (colorRed, colorGreen, colorBlue), font=font)
 
     return im
 

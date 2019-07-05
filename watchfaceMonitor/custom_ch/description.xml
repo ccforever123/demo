@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HwTheme>
+    <title>custom_ch</title>
+    <title-cn>custom_ch</title-cn>
+    <author>Riken</author>
+    <designer>Riken</designer>
+    <screen>HWHD02</screen>
+    <version>2.1.1</version>
+    <font>Default</font>
+    <font-cn>默认</font-cn>
+    <briefinfo>custom_ch</briefinfo>
+</HwTheme>

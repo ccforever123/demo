@@ -89,33 +89,32 @@ def get_data_type(data_type):
     elif data_type == 'DATA_UNREADMSG_STATE':   # 未读消息状态
         return random.randint(0, 1)
     elif data_type == 'DATA_HOUR12_RATIO':   # 12小时制小时数比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_HOUR24_RATIO':   # 24小时制小时数比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_HOUR_RATIO':   # 小时数比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_MINITE_RATIO':   # 分钟数比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_SECOND_RATIO':   # 秒数比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_DATE_RATIO':   # 日期比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_WEEK_RATIO':   # 周比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_POWER_RATIO':   # 电量比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_HEARTRATE_RATIO':   # 心率比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_CALORIE_RATIO':   # 卡路里比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_STANDUPTIMES_RATIO':   # 站立时间比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_STRENTHTIME_RATIO':   # 中高强度时间比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_STEPS_RATIO':   # 步数比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     elif data_type == 'DATA_VO2MAX_RATIO':   # 最大摄氧量比例
-        return random.randint(0, 100)
+        return '{}%'.format(random.randint(0, 100))
     else:
-        pass
-    
+        return ''
