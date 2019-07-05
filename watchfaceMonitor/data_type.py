@@ -1,7 +1,7 @@
 import random
 
 
-def get_data_type(data_type):
+def get_data_type(data_type, now):
     if data_type == 'DATA_STEPS':   # 步数值
         return random.randint(0, 65535)
     elif data_type == 'DATA_CALORIE':   # 卡路里值
@@ -23,7 +23,7 @@ def get_data_type(data_type):
     elif data_type == 'DATA_POWER':   # 电量百分比值
         return random.randint(0, 100)
     elif data_type == 'DATA_HOUR24':   # 24小时制小时
-        return random.randint(0, 23)
+        return now['hour']
     elif data_type == 'DATA_HOUR12':   # 12小时制小时
         return random.randint(0, 11)
     elif data_type == 'DATA_HOUR':   # 时
@@ -37,7 +37,7 @@ def get_data_type(data_type):
     elif data_type == 'DATA_VO2MAX':   # 最大摄氧量
         return random.randint(0, 80)
     elif data_type == 'DATA_DATE':   # 日期
-        return random.randint(1, 31)
+        return now['date']
     elif data_type == 'DATA_HEARTRATE_MAX':   # 心率最大值
         return random.randint(0, 255)
     elif data_type == 'DATA_HEARTRATE_MIN':   # 心率最小值
@@ -45,33 +45,33 @@ def get_data_type(data_type):
     elif data_type == 'DATA_AMPM':   # 12小时制时的上午/下午
         return random.randint(0, 1)
     elif data_type == 'DATA_MONTH':   # 月份
-        return random.randint(1, 12)
+        return now['month']
     elif data_type == 'DATA_WEEK':   # 周
-        return random.randint(1, 7)
+        return now['week']
     elif data_type == 'DATA_WEATHERTYPE':   # 天气
         return random.randint(0, 11)
     elif data_type == 'DATA_POWER_ENUM':   # 电量
         return random.randint(0, 10)
     elif data_type == 'DATA_HOUR12_HIGH':   # 12小时制小时高位
-        return random.randint(0, 9)
+        return now['hourHigh']
     elif data_type == 'DATA_HOUR12_LOW':   # 12小时制小时低位
-        return random.randint(0, 9)
+        return now['hourLow']
     elif data_type == 'DATA_HOUR24_HIGH':   # 24小时制小时高位
-        return random.randint(0, 9)
+        return now['hourHigh']
     elif data_type == 'DATA_HOUR24_LOW':   # 24小时制小时低位
-        return random.randint(0, 9)
+        return now['hourLow']
     elif data_type == 'DATA_HOUR_HIGH':   # 小时高位
-        return random.randint(0, 9)
+        return now['hourHigh']
     elif data_type == 'DATA_HOUR_LOW':   # 小时低位
-        return random.randint(0, 9)
+        return now['hourLow']
     elif data_type == 'DATA_MINITE_HIGH':   # 分钟高位
-        return random.randint(0, 9)
+        return now['minuteHigh']
     elif data_type == 'DATA_MINITE_LOW':   #分钟低位 
-        return random.randint(0, 9)
+        return now['minuteLow']
     elif data_type == 'DATA_SECOND_HIGH':   # 秒数高位
-        return random.randint(0, 9)
+        return now['secondHigh']
     elif data_type == 'DATA_SECOND_LOW':   # 秒数低位
-        return random.randint(0, 9)
+        return now['secondLow']
     elif data_type == 'DATA_STEPS_ONE':   # 步数个位
         return random.randint(0, 9)
     elif data_type == 'DATA_STEPS_TWO':   # 步数十位
@@ -83,9 +83,9 @@ def get_data_type(data_type):
     elif data_type == 'DATA_STEPS_FIVE':   # 步数万位
         return random.randint(0, 9)
     elif data_type == 'DATA_DATE_HIGH':   # 日期高位
-        return random.randint(0, 3)
+        return now['dateHigh']
     elif data_type == 'DATA_DATE_LOW':   # 日期低位
-        return random.randint(0, 9)
+        return now['dateLow']
     elif data_type == 'DATA_UNREADMSG_STATE':   # 未读消息状态
         return random.randint(0, 1)
     elif data_type == 'DATA_HOUR12_RATIO':   # 12小时制小时数比例

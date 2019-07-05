@@ -5,11 +5,48 @@ from data_type import get_data_type
 from font_type import get_font_type
 from data_connector_type import get_connector_type
 import time
+import calendar
 # import cv2
 # import numpy as np
 
+now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+print(now)
+dayStr, timeStr = now.split(' ')
+year, month, date = dayStr.split('-')
+hour, minute, second = timeStr.split(':')
+week = calendar.weekday(int(year), int(month), int(date)) + 1
+if len(date) < 2:
+    date = '0' + date
+dateHigh, dateLow = date[0], date[1]
+if len(hour) < 2:
+    hour = '0' + hour
+hourHigh, hourLow = hour[0], hour[1]
+if len(minute) < 2:
+    minute = '0' + minute
+minuteHigh, minuteLow = minute[0], minute[1]
+if len(second) < 2:
+    second = '0' + second
+secondHigh, secondLow = second[0], second[1]
+now = {
+    "month": month,
+    "date": date,
+    "dateHigh": dateHigh,
+    "dateLow": dateLow,
+    "hour": hour,
+    "hourHigh": hourHigh,
+    "hourLow": hourLow,
+    "minute": minute,
+    "minuteHigh": minuteHigh,
+    "minuteLow": minuteLow,
+    "second": second,
+    "secondHigh": secondHigh,
+    "secondLow": secondLow,
+    "week": week
+}
+
+
 def main():
-    path = os.path.join(os.getcwd(), 'custom_ch')
+    path = os.path.join(os.getcwd(), 'amazfit')
     watchfaceConfigFile = os.path.join(path, 'watchface\\watch_face_config.xml')
     sourcePath = os.path.join(path, 'watchface\\res')
     content = read_file(watchfaceConfigFile)
@@ -38,14 +75,6 @@ def main():
         else:
             print('Error: Missing the widget type: {}'.format(widgetType))
     im.show()
-
-
-def get_time():
-    now = time.strftime("%m-%d %H:%M:%S", time.localtime())
-    dayStr, timeStr = now.split(' ')
-    month, date = dayStr.split('-')
-    hour, minute, second = timeStr.split(':')
-    return month, date, hour, minute, second
 
 def read_file(filename):    # get file content
     with open(filename, 'r', encoding='utf-8') as f:
@@ -108,9 +137,9 @@ def type_TEXTUREMAPPER(im, styleDict, sourcePath):  # 图片旋转，如时分�
     img, a = open_image(resName, sourcePath)
     imgWidth, imgHeight = img.size
     # x = int(rotationCenterX - imgWidth / 2)
-    x = int((drawableWidth - imgWidth) / 2)
+    x = int(drawableWidth / 2 - rotationCenterX)
     # y = rotationCenterY - imgHeight
-    y = int((drawableHeight - imgHeight) / 2)
+    y = int(drawableHeight / 2 - rotationCenterY)
     im.paste(img, (x,y), mask=a)
     return im
 
@@ -162,7 +191,7 @@ def type_TEXTAREAWITHONEWILDCARD(im, styleDict, sourcePath):    # 动态文本�
     fontType = styleDict['font_type']    # 字体字号
     alpha = int(styleDict['alpha'])    # 文本的透明度值
 
-    data = get_data_type(dataType)
+    data = get_data_type(dataType, now)
     fontFile, fontsize = get_font_type(fontType)
     font = ImageFont.truetype(fontFile, fontsize)
     ImageDraw.Draw(im).text((drawableX, drawableY), str(data), (colorRed, colorGreen, colorBlue), font=font)
@@ -203,7 +232,7 @@ def type_SELECTIMAGE(im, styleDict, sourcePath):    # 随着订阅的数据类�
     res13 = styleDict['res_13']  # 序列帧第14幅图片ID
     res14 = styleDict['res_14']  # 序列帧第15幅图片ID
     resList = [res0, res1, res2, res3, res4, res5, res6, res7, res8, res9, res10, res11, res12, res13, res14]
-    resIndex = int(get_data_type(dataType))
+    resIndex = int(get_data_type(dataType, now))
     img, a = open_image(resList[resIndex], sourcePath)
     im.paste(img, (drawableX, drawableY), mask=a)
 
@@ -227,8 +256,7 @@ def type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath):    # 带连接符�
     alpha = int(styleDict['alpha'])    # 文本的透明度值
 
     dataConnector = get_connector_type(dataCconnectorType)
-    print(get_data_type(dataType), dataCconnectorType, get_data_type(data2Type))
-    data = str(get_data_type(dataType)) + dataConnector + str(get_data_type(data2Type))
+    data = str(get_data_type(dataType, now)) + dataConnector + str(get_data_type(data2Type, now))
     fontFile, fontsize = get_font_type(fontType)
     font = ImageFont.truetype(fontFile, fontsize)
 
