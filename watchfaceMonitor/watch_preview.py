@@ -182,6 +182,7 @@ def type_BOX(im, styleDict, sourcePath):    # 背景框，用于显示背景色
 
 
 def type_SELECTIMAGE(im, styleDict, sourcePath):    # 随着订阅的数据类型的数据改变，显示不同的图片
+    print(styleDict)
     drawableX = int(styleDict['drawable_x'])    # 文本框左上角X坐标
     drawableY = int(styleDict['drawable_y'])    # 文本框左上角Y坐标
     dataType = styleDict['data_type']    # 订阅的数据

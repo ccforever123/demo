@@ -7,7 +7,7 @@ def get_data_type(data_type):
     elif data_type == 'DATA_CALORIE':   # 卡路里值
         return '999'
     elif data_type == 'DATA_HEARTRATE':   # 心率值
-        return '199'
+        return '3'
     elif data_type == 'DATA_STRENTHTIME':   # 中高强度时间
         return '99'
     elif data_type == 'DATA_TEMPERATURE':   # 温度值
@@ -103,7 +103,7 @@ def get_data_type(data_type):
     elif data_type == 'DATA_WEEK_RATIO':   # 周比例
         return '80'
     elif data_type == 'DATA_POWER_RATIO':   # 电量比例
-        return '99'
+        return '99%'
     elif data_type == 'DATA_HEARTRATE_RATIO':   # 心率比例
         return '99'
     elif data_type == 'DATA_CALORIE_RATIO':   # 卡路里比例
