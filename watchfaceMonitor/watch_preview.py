@@ -153,7 +153,7 @@ def type_TEXTUREMAPPER(im, styleDict, sourcePath):  # 图片旋转，如时分�
     data = get_data_type(dataType, now)
     # dataAngle = get_data_angle(dataType, data)
     angle = data * (endArc - beginArc) + beginArc
-    print('dataType={}, data={:.2f}, angleRange={}-{}, angle={:.2f}'.format(dataType, data, beginArc, endArc, angle))
+    # print('dataType={}, data={:.2f}, angleRange={}-{}, angle={:.2f}'.format(dataType, data, beginArc, endArc, angle))
     newImg = newImg.rotate(-angle)
 
     
@@ -319,10 +319,18 @@ def create_ring(resName, sourcePath, x, y, bigR, smallR, arcStart, arcEnd):
     # 判断旋转角度
     for i in range(width):
         for j in range(height):  
-             a, b = (i - x), (j - y)
-             degree = math.degrees(math.atan(b / a))
-             if degree > arcEnd or degree < arcStart:
-                 img.putpixel((i,j), (0,0,0,0))
+            a, b = (i - x), (j - y)
+            if a != 0:
+                degree = math.degrees(math.atan(b / a))
+                if degree < 0:
+                    degree = degree
+                if degree < arcStart or degree > arcEnd:
+                    print("-> degree: {}, range: {}-{}".format(degree, arcStart, arcEnd))
+                    img.putpixel((i,j), (0,0,0,0))
+                else:
+                    print(" × degree: {}, range: {}-{}".format(degree, arcStart, arcEnd))
+            else:
+                img.putpixel((i,j), (0,0,0,0))
     r,g,b,a = img.split()
     img.paste(smallCircle, (0,0), mask=a)
 
