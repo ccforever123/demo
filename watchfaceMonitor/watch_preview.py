@@ -317,6 +317,7 @@ def create_ring(resName, sourcePath, x, y, bigR, smallR, arcStart, arcEnd):
     r,g,b,a = img.split()
     img.paste(smallCircle, (0,0), mask=a)
     # 判断旋转角度
+    texts = []
     for i in range(width):
         for j in range(height):  
             a, b = (i - x), (j - y)
@@ -325,12 +326,22 @@ def create_ring(resName, sourcePath, x, y, bigR, smallR, arcStart, arcEnd):
                 if degree < 0:
                     degree = degree
                 if degree < arcStart or degree > arcEnd:
-                    print("-> degree: {}, range: {}-{}".format(degree, arcStart, arcEnd))
+                    text = "-> ({}, {}), degree: {}, range: {}-{}\n".format(a, b, degree, arcStart, arcEnd)
+                    texts.append(text)
+                    print(text[:-1])
+                    with open('log.txt', 'a', encoding='utf-8') as f:
+                        f.write(text[:-1])
                     img.putpixel((i,j), (0,0,0,0))
                 else:
-                    print(" × degree: {}, range: {}-{}".format(degree, arcStart, arcEnd))
+                    text = " × ({}, {}), degree: {}, range: {}-{}\n".format(a, b, degree, arcStart, arcEnd)
+                    texts.append(text)
+                    print(text[:-1])
+                
             else:
                 img.putpixel((i,j), (0,0,0,0))
+    with open('log.txt', 'w', encoding='utf-8') as f:
+        for text in texts:
+            f.write(text)
     r,g,b,a = img.split()
     img.paste(smallCircle, (0,0), mask=a)
 
