@@ -103,7 +103,7 @@
                 type="static"
                 drawable_x="156"
                 drawable_y="256"
-                data_type="DATA_HEARTRATE"
+                data_type="DATA_HEARTRATE_RATIO"
             />
             <ImagesList
                 res_0="A100_003.png"

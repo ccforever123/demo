@@ -11,7 +11,7 @@ def get_data_type(data_type, now):
     elif data_type == 'DATA_STRENTHTIME':   # 中高强度时间
         return random.randint(0, 65535)
     elif data_type == 'DATA_TEMPERATURE':   # 温度值
-        return random.randint(-32678, 32678)
+        return random.randint(-50, 50)
     elif data_type == 'DATA_PM25':   # PM2.5
         return random.randint(0, 500)
     elif data_type == 'DATA_AQI':   # AQI
@@ -89,32 +89,86 @@ def get_data_type(data_type, now):
     elif data_type == 'DATA_UNREADMSG_STATE':   # 未读消息状态
         return random.randint(0, 1)
     elif data_type == 'DATA_HOUR12_RATIO':   # 12小时制小时数比例
-        return '{}%'.format(random.randint(0, 100))
+        return now['hour'] / 12
     elif data_type == 'DATA_HOUR24_RATIO':   # 24小时制小时数比例
-        return '{}%'.format(random.randint(0, 100))
+        return now['hour'] / 24
     elif data_type == 'DATA_HOUR_RATIO':   # 小时数比例
-        return '{}%'.format(random.randint(0, 100))
+        return now['hour'] / 12
     elif data_type == 'DATA_MINITE_RATIO':   # 分钟数比例
-        return '{}%'.format(random.randint(0, 100))
+        return now['minute'] / 60
     elif data_type == 'DATA_SECOND_RATIO':   # 秒数比例
-        return '{}%'.format(random.randint(0, 100))
+        return now['second'] / 60
     elif data_type == 'DATA_DATE_RATIO':   # 日期比例
-        return '{}%'.format(random.randint(0, 100))
+        return random.randint(0, 100)
     elif data_type == 'DATA_WEEK_RATIO':   # 周比例
-        return '{}%'.format(random.randint(0, 100))
+        return now['week'] / 7
     elif data_type == 'DATA_POWER_RATIO':   # 电量比例
-        return '{}%'.format(random.randint(0, 100))
+        return random.randint(0, 100)
     elif data_type == 'DATA_HEARTRATE_RATIO':   # 心率比例
-        return '{}%'.format(random.randint(0, 100))
+        return random.randint(0, 14)
     elif data_type == 'DATA_CALORIE_RATIO':   # 卡路里比例
-        return '{}%'.format(random.randint(0, 100))
+        return random.randint(0, 100)
     elif data_type == 'DATA_STANDUPTIMES_RATIO':   # 站立时间比例
-        return '{}%'.format(random.randint(0, 100))
+        return random.randint(0, 100)
     elif data_type == 'DATA_STRENTHTIME_RATIO':   # 中高强度时间比例
-        return '{}%'.format(random.randint(0, 100))
+        return random.randint(0, 100)
     elif data_type == 'DATA_STEPS_RATIO':   # 步数比例
-        return '{}%'.format(random.randint(0, 100))
+        return random.randint(0, 100)
     elif data_type == 'DATA_VO2MAX_RATIO':   # 最大摄氧量比例
-        return '{}%'.format(random.randint(0, 100))
+        return random.randint(0, 100)
+    else:
+        return ''
+
+def get_data_angle(data_type, data):
+    if data_type == 'DATA_STEPS':   # 步数值
+        return data / 65535
+    elif data_type == 'DATA_CALORIE':   # 卡路里值
+        return data / 65535
+    elif data_type == 'DATA_HEARTRATE':   # 心率值
+        return data / 255
+    elif data_type == 'DATA_STRENTHTIME':   # 中高强度时间
+        return data / 65535
+    elif data_type == 'DATA_TEMPERATURE':   # 温度值
+        return data / 65535
+    elif data_type == 'DATA_PM25':   # PM2.5
+        return data / 500
+    elif data_type == 'DATA_AQI':   # AQI
+        return data / 500
+    elif data_type == 'DATA_PRESSURE':   # 气压值
+        return data / 65535
+    elif data_type == 'DATA_AILTITUDE':   # 海拔高度
+        return data / 65535
+    elif data_type == 'DATA_POWER':   # 电量百分比值
+        return data / 100
+    elif data_type == 'DATA_HOUR24':   # 24小时制小时
+        return data / 24
+    elif data_type == 'DATA_HOUR12':   # 12小时制小时
+        return data / 12
+    elif data_type == 'DATA_HOUR':   # 时
+        return data / 24
+    elif data_type == 'DATA_MINITE':   # 分
+        return data / 60
+    elif data_type == 'DATA_SECOND':   # 秒
+        return data / 60
+    elif data_type == 'DATA_STANDUPTIMES':   # 站立次数
+        return data / 255
+    elif data_type == 'DATA_VO2MAX':   # 最大摄氧量
+        return data / 80
+    elif data_type == 'DATA_DATE':   # 日期
+        return data / 31
+    elif data_type == 'DATA_HEARTRATE_MAX':   # 心率最大值
+        return data / 255
+    elif data_type == 'DATA_HEARTRATE_MIN':   # 心率最小值
+        return data / 255
+    elif data_type == 'DATA_AMPM':   # 12小时制时的上午/下午
+        return data / 2
+    elif data_type == 'DATA_MONTH':   # 月份
+        return data / 12
+    elif data_type == 'DATA_WEEK':   # 周
+        return data / 7
+    elif data_type == 'DATA_WEATHERTYPE':   # 天气
+        return data / 11
+    elif data_type == 'DATA_POWER_ENUM':   # 电量
+        return data / 10
     else:
         return ''

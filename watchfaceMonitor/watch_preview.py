@@ -1,11 +1,14 @@
 import os
 import re
 from PIL import Image, ImageDraw, ImageFont
-from data_type import get_data_type
+from data_type import get_data_type, get_data_angle
 from font_type import get_font_type
 from data_connector_type import get_connector_type
 import time
 import calendar
+import random
+from matplotlib.patches import Circle 
+import math
 # import cv2
 # import numpy as np
 
@@ -28,32 +31,31 @@ if len(second) < 2:
     second = '0' + second
 secondHigh, secondLow = second[0], second[1]
 now = {
-    "month": month,
-    "date": date,
-    "dateHigh": dateHigh,
-    "dateLow": dateLow,
-    "hour": hour,
-    "hourHigh": hourHigh,
-    "hourLow": hourLow,
-    "minute": minute,
-    "minuteHigh": minuteHigh,
-    "minuteLow": minuteLow,
-    "second": second,
-    "secondHigh": secondHigh,
-    "secondLow": secondLow,
-    "week": week
+    "month": int(month),
+    "date": int(date),
+    "dateHigh": int(dateHigh),
+    "dateLow": int(dateLow),
+    "hour": int(hour),
+    "hourHigh": int(hourHigh),
+    "hourLow": int(hourLow),
+    "minute": int(minute),
+    "minuteHigh": int(minuteHigh),
+    "minuteLow": int(minuteLow),
+    "second": int(second),
+    "secondHigh": int(secondHigh),
+    "secondLow": int(secondLow),
+    "week": int(week)
 }
 
 
 def main():
-    path = os.path.join(os.getcwd(), 'amazfit')
+    path = os.path.join(os.getcwd(), 'custom_ch')
     watchfaceConfigFile = os.path.join(path, 'watchface\\watch_face_config.xml')
     sourcePath = os.path.join(path, 'watchface\\res')
     content = read_file(watchfaceConfigFile)
     dpi = int(get_dpi(content))
     widgetList = split_content(content)
     im = Image.new("RGBA", (dpi, dpi))  # a new image, size = dpi
-    # im = np.zeros((dpi,dpi,3), np.uint8)  # a new image, size = dpi
     for widget in widgetList:
         widgetType, styleDict = seperate_widget_type(widget)
         if widgetType == 'IMAGE':
@@ -75,6 +77,7 @@ def main():
         else:
             print('Error: Missing the widget type: {}'.format(widgetType))
     im.show()
+
 
 def read_file(filename):    # get file content
     with open(filename, 'r', encoding='utf-8') as f:
@@ -134,13 +137,32 @@ def type_TEXTUREMAPPER(im, styleDict, sourcePath):  # 图片旋转，如时分�
     endArc = int(styleDict['end_arc'])  # 旋转终止角度
     dataType = styleDict['data_type']  # 数据类型
 
+    # 新建一个覆盖了指针旋转的方形大图，避免旋转时指针被裁切，大图的长宽均为2*rotationCenterY
     img, a = open_image(resName, sourcePath)
     imgWidth, imgHeight = img.size
-    # x = int(rotationCenterX - imgWidth / 2)
-    x = int(drawableWidth / 2 - rotationCenterX)
-    # y = rotationCenterY - imgHeight
+    newDpi = 2 * rotationCenterY
+    newImg = Image.new("RGBA", (newDpi, newDpi))
+    newImgWidth, newImgHeight = newImg.size
+    newX = int((newDpi - imgWidth) / 2)
+    newY = int(newImgWidth / 2 - rotationCenterY)
+
+    newImg.paste(img, (newX, newY), mask=a) # 黏贴好指针后，将背景设为透明 
+
+    # 指针旋转
+    # angle = random.randint(beginArc, endArc)
+    data = get_data_type(dataType, now)
+    # dataAngle = get_data_angle(dataType, data)
+    angle = data * (endArc - beginArc) + beginArc
+    print('dataType={}, data={:.2f}, angleRange={}-{}, angle={:.2f}'.format(dataType, data, beginArc, endArc, angle))
+    newImg = newImg.rotate(-angle)
+
+    
+    # 重新对指针放置坐标进行定位
+    x = int(drawableWidth / 2 - rotationCenterX) - newX
     y = int(drawableHeight / 2 - rotationCenterY)
-    im.paste(img, (x,y), mask=a)
+    # print('im.size={}, x={}, y={}, newImg.size={}'.format(im.size, x, y, newImg.size))
+    r,g,b,alpha = newImg.split()   
+    im.paste(newImg, (x,y), mask=alpha)
     return im
 
 
@@ -160,7 +182,13 @@ def type_CIRCLE(im, styleDict, sourcePath): # 圆形进度条，用于步数、�
     precision = int(styleDict['precision'])    # 设置Circle绘制功能的精度。精度是以度为单位的，默认值为5，值越高，圆圈步进越大，但渲染速度越快。
     dataType = styleDict['data_type']    # 订阅的数据
 
-    img, a = open_image(resName, sourcePath)
+    # 画出圆环中的大圆和小圆，并透明化圆外区域
+    bigR = circleR + lineWidth / 2
+    smallR = circleR - lineWidth / 2
+    
+    img, a = create_ring(resName, sourcePath, circleX, circleY, bigR, smallR, arcStart, arcEnd)
+
+    # img, a = open_image(resName, sourcePath)
     im.paste(img, (drawableX,drawableY), mask=a)
     
     return im
@@ -212,7 +240,6 @@ def type_BOX(im, styleDict, sourcePath):    # 背景框，用于显示背景色
 
 
 def type_SELECTIMAGE(im, styleDict, sourcePath):    # 随着订阅的数据类型的数据改变，显示不同的图片
-    print(styleDict)
     drawableX = int(styleDict['drawable_x'])    # 文本框左上角X坐标
     drawableY = int(styleDict['drawable_y'])    # 文本框左上角Y坐标
     dataType = styleDict['data_type']    # 订阅的数据
@@ -263,6 +290,51 @@ def type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath):    # 带连接符�
     ImageDraw.Draw(im).text((drawableX, drawableY), str(data), (colorRed, colorGreen, colorBlue), font=font)
 
     return im
+
+
+def create_ring(resName, sourcePath, x, y, bigR, smallR, arcStart, arcEnd):
+    imageFile = os.path.join(sourcePath, resName)
+    img = Image.open(imageFile).convert('RGBA')
+    width, height = img.size
+    # 切出大圆
+    bigCircle = img
+    for i in range(width):
+        for j in range(height):
+            a, b = (i - x), (j - y)
+            distance = pythagorean_theorem(a, b)
+            if distance > bigR:
+                bigCircle.putpixel((i,j), (0,0,0,0))
+    r,g,b,a = img.split()
+    img.paste(bigCircle, (0,0), mask=a)
+    # 切出小圆，黏贴形成圆环
+    for i in range(width):
+        for j in range(height):
+            a, b = (i - x), (j - y)
+            distance = pythagorean_theorem(a, b)
+            if distance < smallR:
+                img.putpixel((i,j), (0,0,0,0))
+    smallCircle = img
+    r,g,b,a = img.split()
+    img.paste(smallCircle, (0,0), mask=a)
+    # 判断旋转角度
+    for i in range(width):
+        for j in range(height):  
+             a, b = (i - x), (j - y)
+             degree = math.degrees(math.atan(b / a))
+             if degree > arcEnd or degree < arcStart:
+                 img.putpixel((i,j), (0,0,0,0))
+    r,g,b,a = img.split()
+    img.paste(smallCircle, (0,0), mask=a)
+
+
+
+    r,g,b,a = img.split()
+    return img, a
+
+
+def pythagorean_theorem(a, b):
+    return (a**2 + b**2)**0.5
+
 
 
 if __name__ == "__main__":

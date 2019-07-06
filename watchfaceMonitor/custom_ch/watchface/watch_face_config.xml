@@ -11,6 +11,27 @@
                 res_name="A100_002.png"
             />
         </Widget>
+		        <!-- 心率比 -->
+         <Widget widget_type="CIRCLE">
+            <Circle
+                lable="heartrate circle"
+                type="static"
+                drawable_x="177"
+                drawable_y="275"
+                drawable_width="100"
+                drawable_height="100"
+                circle_x="50"
+                circle_y="50"
+                circle_r="46"
+                line_width="8"
+                arc_start="204"
+                arc_end="334"
+                update_arc_start="204"
+                precision="5"
+                data_type="DATA_HEARTRATE_RATIO"
+                res_name="A100_019.png"
+            />
+        </Widget>
         <!-- 步数图片 -->
          <Widget widget_type="IMAGE">
             <Image 
@@ -116,27 +137,7 @@
                 alpha="255"
             />
         </Widget>
-        <!-- 心率比 -->
-         <Widget widget_type="CIRCLE">
-            <Circle
-                lable="heartrate circle"
-                type="static"
-                drawable_x="177"
-                drawable_y="275"
-                drawable_width="100"
-                drawable_height="100"
-                circle_x="50"
-                circle_y="50"
-                circle_r="46"
-                line_width="8"
-                arc_start="204"
-                arc_end="334"
-                update_arc_start="204"
-                precision="5"
-                data_type="DATA_HEARTRATE_RATIO"
-                res_name="A100_019.png"
-            />
-        </Widget>
+
         <!-- 电量比 -->
         <Widget widget_type="CIRCLE">
             <Circle
