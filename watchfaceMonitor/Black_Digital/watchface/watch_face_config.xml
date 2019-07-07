@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<providers>
+    <TemplateWatch dpi="454">
+        <Widget widget_type="IMAGE">
+            <Image 
+                lable="backgroud"
+                type="static"
+                x="0"
+                y="0"
+                res_name="A100_007.png"
+            />
+        </Widget> 
+		
+		<Widget widget_type="IMAGE">
+            <Image 
+                lable="power"
+                type="static"
+                x="173"
+                y="80"
+                res_name="A100_003.png"
+            />
+        </Widget> 
+		
+		<Widget widget_type="TEXTAREAWITHONEWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="power text"
+                type="static"
+                drawable_x="207"
+                drawable_y="83"
+                drawable_width="65"
+                drawable_height="40"
+                color_red="166"
+                color_green="166"
+                color_blue="166"
+                data_type="DATA_POWER"
+                line_spacing="0"
+                alignment_type="CENTER"
+                font_type="F_DINCONDENSED_BOLD_38"
+                alpha="255"
+            />
+        </Widget>
+		
+		<Widget widget_type="IMAGE">
+            <Image 
+                lable="step"
+                type="static"
+                x="234"
+                y="320"
+                res_name="A100_005.png"
+            />
+        </Widget> 
+
+		<Widget widget_type="IMAGE">
+            <Image 
+                lable="heartrate"
+                type="static"
+                x="90"
+                y="320"
+                res_name="A100_004.png"
+            />
+        </Widget> 
+		
+		<Widget widget_type="CIRCLE">
+            <Circle
+                lable="power circle"
+                type="static"
+                drawable_x="0"
+                drawable_y="0"
+                drawable_width="454"
+                drawable_height="454"
+                circle_x="227"
+                circle_y="227"
+                circle_r="219"
+                line_width="16"
+                arc_start="0"
+                arc_end="360"
+                update_arc_start="0"
+                precision="2"
+                data_type="DATA_POWER_RATIO"
+                res_name="A100_002.png"
+            />
+        </Widget>
+		
+         <!--Widget widget_type="TEXTAREAWITHTWOWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="date text"
+                type="static"
+                drawable_x="159"
+                drawable_y="98"
+                drawable_width="52"
+                drawable_height="30"
+                color_red="166"
+                color_green="166"
+                color_blue="166"
+                data_type="DATA_MONTH"
+                data_connector_type="CONN_STUB"
+                data2_type="DATA_DATE"
+                line_spacing="0"
+                alignment_type="CENTER"
+                font_type="F_DINCONDENSED_BOLD_38"
+                alpha="255"
+            />
+        </Widget-->
+		
+		<Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="hour_high"
+                type="static"
+                drawable_x="45"
+                drawable_y="145"
+                data_type="DATA_HOUR_HIGH"
+            />
+            <ImagesList
+                res_0="A100_008.png"
+                res_1="A100_009.png"
+                res_2="A100_010.png"
+                res_3="A100_011.png"
+                res_4="A100_012.png"
+                res_5="A100_013.png"
+                res_6="A100_014.png"
+                res_7="A100_015.png"
+                res_8="A100_016.png"
+                res_9="A100_017.png"
+                res_10=""
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>
+		
+		<Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="hour_low"
+                type="static"
+                drawable_x="128"
+                drawable_y="145"
+                data_type="DATA_HOUR_LOW"
+            />
+            <ImagesList
+                res_0="A100_008.png"
+                res_1="A100_009.png"
+                res_2="A100_010.png"
+                res_3="A100_011.png"
+                res_4="A100_012.png"
+                res_5="A100_013.png"
+                res_6="A100_014.png"
+                res_7="A100_015.png"
+                res_8="A100_016.png"
+                res_9="A100_017.png"
+                res_10=""
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>
+
+		<Widget widget_type="IMAGE">
+            <Image 
+                lable=":"
+                type="static"
+                x="212"
+                y="145"
+                res_name="A100_006.png"
+            />
+        </Widget> 
+		
+		<Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="minute_high"
+                type="static"
+                drawable_x="248"
+                drawable_y="148"
+                data_type="DATA_MINITE_HIGH"
+            />
+            <ImagesList
+                res_0="A100_008.png"
+                res_1="A100_009.png"
+                res_2="A100_010.png"
+                res_3="A100_011.png"
+                res_4="A100_012.png"
+                res_5="A100_013.png"
+                res_6="A100_014.png"
+                res_7="A100_015.png"
+                res_8="A100_016.png"
+                res_9="A100_017.png"
+                res_10=""
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>
+		
+		<Widget widget_type="SELECTIMAGE">
+            <SelectImage
+                label="minute_low"
+                type="static"
+                drawable_x="332"
+                drawable_y="145"
+                data_type="DATA_MINITE_LOW"
+            />
+            <ImagesList
+                res_0="A100_008.png"
+                res_1="A100_009.png"
+                res_2="A100_010.png"
+                res_3="A100_011.png"
+                res_4="A100_012.png"
+                res_5="A100_013.png"
+                res_6="A100_014.png"
+                res_7="A100_015.png"
+                res_8="A100_016.png"
+                res_9="A100_017.png"
+                res_10=""
+                res_11=""
+                res_12=""
+                res_13=""
+                res_14=""
+            />
+        </Widget>
+		
+		<Widget widget_type="TEXTAREAWITHONEWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="heartrate"
+                type="static"
+                drawable_x="138"
+                drawable_y="318"
+                drawable_width="65"
+                drawable_height="40"
+                color_red="166"
+                color_green="166"
+                color_blue="166"
+                data_type="DATA_HEARTRATE"
+                line_spacing="0"
+                alignment_type="CENTER"
+                font_type="F_DINCONDENSED_BOLD_38"
+                alpha="255"
+            />
+        </Widget>
+		
+		<Widget widget_type="TEXTAREAWITHONEWILDCARD">
+            <TextAreaWithOneWildcard
+                lable="step"
+                type="static"
+                drawable_x="285"
+                drawable_y="318"
+                drawable_width="65"
+                drawable_height="40"
+                color_red="166"
+                color_green="166"
+                color_blue="166"
+                data_type="DATA_STEPS"
+                line_spacing="0"
+                alignment_type="CENTER"
+                font_type="F_DINCONDENSED_BOLD_38"
+                alpha="255"
+            />
+        </Widget>
+
+    </TemplateWatch>
+</providers>

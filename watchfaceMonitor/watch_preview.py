@@ -1,7 +1,7 @@
 import os
 import re
 from PIL import Image, ImageDraw, ImageFont
-from data_type import get_data_type, get_data_angle
+from data_type import get_data, get_data_angle
 from font_type import get_font_type
 from data_connector_type import get_connector_type
 import time
@@ -49,6 +49,8 @@ now = {
 
 
 def main():
+    # path = os.path.join(os.getcwd(), 'watch_1')
+    # path = os.path.join(os.getcwd(), 'amazfit')
     path = os.path.join(os.getcwd(), 'custom_ch')
     watchfaceConfigFile = os.path.join(path, 'watchface\\watch_face_config.xml')
     sourcePath = os.path.join(path, 'watchface\\res')
@@ -150,7 +152,7 @@ def type_TEXTUREMAPPER(im, styleDict, sourcePath):  # 图片旋转，如时分�
 
     # 指针旋转
     # angle = random.randint(beginArc, endArc)
-    data = get_data_type(dataType, now)
+    data = get_data(dataType, now)
     # dataAngle = get_data_angle(dataType, data)
     angle = data * (endArc - beginArc) + beginArc
     # print('dataType={}, data={:.2f}, angleRange={}-{}, angle={:.2f}'.format(dataType, data, beginArc, endArc, angle))
@@ -185,8 +187,10 @@ def type_CIRCLE(im, styleDict, sourcePath): # 圆形进度条，用于步数、�
     # 画出圆环中的大圆和小圆，并透明化圆外区域
     bigR = circleR + lineWidth / 2
     smallR = circleR - lineWidth / 2
+
+    data = get_data(dataType, now)
     
-    img, a = create_ring(resName, sourcePath, circleX, circleY, bigR, smallR, arcStart, arcEnd)
+    img, a = create_ring(resName, sourcePath, circleX, circleY, bigR, smallR, arcStart, arcEnd, data)
 
     # img, a = open_image(resName, sourcePath)
     im.paste(img, (drawableX,drawableY), mask=a)
@@ -219,7 +223,7 @@ def type_TEXTAREAWITHONEWILDCARD(im, styleDict, sourcePath):    # 动态文本�
     fontType = styleDict['font_type']    # 字体字号
     alpha = int(styleDict['alpha'])    # 文本的透明度值
 
-    data = get_data_type(dataType, now)
+    data = get_data(dataType, now)
     fontFile, fontsize = get_font_type(fontType)
     font = ImageFont.truetype(fontFile, fontsize)
     ImageDraw.Draw(im).text((drawableX, drawableY), str(data), (colorRed, colorGreen, colorBlue), font=font)
@@ -259,7 +263,7 @@ def type_SELECTIMAGE(im, styleDict, sourcePath):    # 随着订阅的数据类�
     res13 = styleDict['res_13']  # 序列帧第14幅图片ID
     res14 = styleDict['res_14']  # 序列帧第15幅图片ID
     resList = [res0, res1, res2, res3, res4, res5, res6, res7, res8, res9, res10, res11, res12, res13, res14]
-    resIndex = int(get_data_type(dataType, now))
+    resIndex = int(get_data(dataType, now))
     img, a = open_image(resList[resIndex], sourcePath)
     im.paste(img, (drawableX, drawableY), mask=a)
 
@@ -283,7 +287,7 @@ def type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath):    # 带连接符�
     alpha = int(styleDict['alpha'])    # 文本的透明度值
 
     dataConnector = get_connector_type(dataCconnectorType)
-    data = str(get_data_type(dataType, now)) + dataConnector + str(get_data_type(data2Type, now))
+    data = str(get_data(dataType, now)) + dataConnector + str(get_data(data2Type, now))
     fontFile, fontsize = get_font_type(fontType)
     font = ImageFont.truetype(fontFile, fontsize)
 
@@ -292,7 +296,7 @@ def type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath):    # 带连接符�
     return im
 
 
-def create_ring(resName, sourcePath, x, y, bigR, smallR, arcStart, arcEnd):
+def create_ring(resName, sourcePath, x, y, bigR, smallR, arcStart, arcEnd, data):
     imageFile = os.path.join(sourcePath, resName)
     img = Image.open(imageFile).convert('RGBA')
     width, height = img.size
@@ -317,31 +321,40 @@ def create_ring(resName, sourcePath, x, y, bigR, smallR, arcStart, arcEnd):
     r,g,b,a = img.split()
     img.paste(smallCircle, (0,0), mask=a)
     # 判断旋转角度
-    texts = []
+    # logs = []
+
+    arcMax = max(arcStart, arcEnd)
+    arcMin = min(arcStart, arcEnd)
+    arcData = data * 0.01 * (arcMax - arcMin)   # 获取数据在Circle中的占比值
+    print('arcMax={}, arcData={}%={}, arcMin={}'.format(arcMax, data, arcData, arcMin))
+    arcMax = arcMax - arcData
     for i in range(width):
         for j in range(height):  
-            a, b = (i - x), (j - y)
+            a, b = (i - x), (y - j)
             if a != 0:
                 degree = math.degrees(math.atan(b / a))
-                if degree < 0:
-                    degree = degree
-                if degree < arcStart or degree > arcEnd:
-                    text = "-> ({}, {}), degree: {}, range: {}-{}\n".format(a, b, degree, arcStart, arcEnd)
-                    texts.append(text)
-                    print(text[:-1])
+                if a < 0 and b > 0:
+                    degree = 270 + degree
+                elif a < 0 and b < 0:
+                    degree = 270 - degree
+                elif a > 0 and b > 0:
+                    degree = 90 - degree
+                else:
+                    degree = 90 + degree
+                if degree < arcMin or degree > arcMax:
+                    text = "-> ({}, {}), degree: {:.0f}, range: {}-{}\n".format(a, b, degree, arcMin, arcMax)
+                    # logs.append(text)
                     with open('log.txt', 'a', encoding='utf-8') as f:
                         f.write(text[:-1])
                     img.putpixel((i,j), (0,0,0,0))
                 else:
-                    text = " × ({}, {}), degree: {}, range: {}-{}\n".format(a, b, degree, arcStart, arcEnd)
-                    texts.append(text)
-                    print(text[:-1])
-                
+                    text = " × ({}, {}), degree: {:.0f}, range: {}-{}\n".format(a, b, degree, arcMin, arcMax)
+                    # logs.append(text)
             else:
                 img.putpixel((i,j), (0,0,0,0))
-    with open('log.txt', 'w', encoding='utf-8') as f:
-        for text in texts:
-            f.write(text)
+    # with open('log.txt', 'w', encoding='utf-8') as f:
+    #     for text in logs:
+    #         f.write(text)
     r,g,b,a = img.split()
     img.paste(smallCircle, (0,0), mask=a)
 

@@ -1,7 +1,7 @@
 import random
 
 
-def get_data_type(data_type, now):
+def get_data(data_type, now):
     if data_type == 'DATA_STEPS':   # 步数值
         return random.randint(0, 65535)
     elif data_type == 'DATA_CALORIE':   # 卡路里值

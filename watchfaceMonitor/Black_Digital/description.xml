@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HwTheme>
+    <title>Black Digital</title>
+    <title-cn>纯黑数字表盘</title-cn>
+    <author>松鼠男</author>
+    <designer>松鼠男</designer>
+    <screen>HWHD02</screen>
+    <version>1.0.1</version>
+    <font>Default</font>
+    <font-cn>默认</font-cn>
+    <briefinfo>纯黑数字表盘</briefinfo>
+</HwTheme>
