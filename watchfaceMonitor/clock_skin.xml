@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clockskin>
+	<drawable>
+		<name>bbbb.png</name>
+	</drawable>
+	<drawable>
+		<name>weekday.xml</name>
+		<arraytype>5</arraytype>
+		<centerX>-85</centerX>
+	</drawable>
+	<drawable>
+		<name>image3.png</name>
+		<rotate>6</rotate>
+		<centerX>85</centerX>
+		<mulrotate>2</mulrotate>
+	</drawable>
+	<drawable>
+		<name>gggggg.png</name>
+	</drawable>
+	<drawable>
+		<arraytype>99</arraytype>
+		<centerX>-25</centerX>
+		<centerY>43</centerY>
+	</drawable>
+	<drawable>
+		<name>digital1_1.xml</name>
+		<arraytype>12</arraytype>
+		<centerX>1</centerX>
+		<centerY>-123</centerY>
+	</drawable>
+	<drawable>
+		<name>rrr.png</name>
+	</drawable>
+	<drawable>
+		<name>digital1.xml</name>
+		<arraytype>4</arraytype>
+		<centerY>131</centerY>
+	</drawable>
+	<drawable>
+		<name>image6.png</name>
+		<rotate>8</rotate>
+	</drawable>
+	<drawable>
+		<name>image7.png</name>
+		<rotate>1</rotate>
+		<mulrotate>1</mulrotate>
+	</drawable>
+	<drawable>
+		<name>image8.png</name>
+		<rotate>9</rotate>
+	</drawable>
+	<drawable>
+		<name>image9.png</name>
+		<rotate>2</rotate>
+		<mulrotate>1</mulrotate>
+	</drawable>
+	<drawable>
+		<name>image10.png</name>
+		<rotate>10</rotate>
+	</drawable>
+	<drawable>
+		<name>image11.png</name>
+		<rotate>3</rotate>
+		<mulrotate>1</mulrotate>
+	</drawable>
+<!--COMMENTED BY ClockSkinMaker
+<metadata gui='rra' version='1.4.0.0'/>
+-->
+</clockskin>
