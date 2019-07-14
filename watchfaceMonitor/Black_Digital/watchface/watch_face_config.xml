@@ -32,7 +32,7 @@
                 color_red="166"
                 color_green="166"
                 color_blue="166"
-                data_type="DATA_POWER"
+                data_type="DATA_POWER_RATIO"
                 line_spacing="0"
                 alignment_type="CENTER"
                 font_type="F_DINCONDENSED_BOLD_38"

@@ -1,23 +1,23 @@
 import random
 
 
-def get_data(data_type, now):
+def get_data(data_type, dataDict):
     if data_type == 'DATA_STEPS':   # 步数值
-        return random.randint(0, 65535)
+        return dataDict['DATA_STEPS']
     elif data_type == 'DATA_CALORIE':   # 卡路里值
-        return random.randint(0, 65535)
+        return dataDict['DATA_CALORIE']
     elif data_type == 'DATA_HEARTRATE':   # 心率值
-        return random.randint(0, 255)
+        return dataDict['DATA_HEARTRATE']
     elif data_type == 'DATA_STRENTHTIME':   # 中高强度时间
-        return random.randint(0, 65535)
+        return dataDict['DATA_STRENTHTIME']
     elif data_type == 'DATA_TEMPERATURE':   # 温度值
-        return random.randint(-50, 50)
+        return dataDict['DATA_TEMPERATURE']
     elif data_type == 'DATA_PM25':   # PM2.5
-        return random.randint(0, 500)
+        return dataDict['DATA_PM25']
     elif data_type == 'DATA_AQI':   # AQI
-        return random.randint(0, 500)
+        return dataDict['DATA_AQI']
     elif data_type == 'DATA_PRESSURE':   # 气压值
-        return random.randint(0, 65535)
+        return dataDict['DATA_PRESSURE']
     elif data_type == 'DATA_AILTITUDE':   # 海拔高度
         return random.randint(-32678, 32678)
     elif data_type == 'DATA_POWER':   # 电量百分比值
@@ -119,7 +119,7 @@ def get_data(data_type, now):
     else:
         return ''
 
-def get_data_angle(data_type, data):
+def get_data_angle(data_type, data):    # 获取环形比例的角度
     if data_type == 'DATA_STEPS':   # 步数值
         return data / 65535
     elif data_type == 'DATA_CALORIE':   # 卡路里值

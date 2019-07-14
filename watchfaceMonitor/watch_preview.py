@@ -4,54 +4,21 @@ from PIL import Image, ImageDraw, ImageFont
 from data_type import get_data, get_data_angle
 from font_type import get_font_type
 from data_connector_type import get_connector_type
-import time
-import calendar
+from create_data import init_data
+from create_ring import create_ring
+
 import random
 from matplotlib.patches import Circle 
-import math
+
 # import cv2
 # import numpy as np
 
-now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-print(now)
-dayStr, timeStr = now.split(' ')
-year, month, date = dayStr.split('-')
-hour, minute, second = timeStr.split(':')
-week = calendar.weekday(int(year), int(month), int(date)) + 1
-if len(date) < 2:
-    date = '0' + date
-dateHigh, dateLow = date[0], date[1]
-if len(hour) < 2:
-    hour = '0' + hour
-hourHigh, hourLow = hour[0], hour[1]
-if len(minute) < 2:
-    minute = '0' + minute
-minuteHigh, minuteLow = minute[0], minute[1]
-if len(second) < 2:
-    second = '0' + second
-secondHigh, secondLow = second[0], second[1]
-now = {
-    "month": int(month),
-    "date": int(date),
-    "dateHigh": int(dateHigh),
-    "dateLow": int(dateLow),
-    "hour": int(hour),
-    "hourHigh": int(hourHigh),
-    "hourLow": int(hourLow),
-    "minute": int(minute),
-    "minuteHigh": int(minuteHigh),
-    "minuteLow": int(minuteLow),
-    "second": int(second),
-    "secondHigh": int(secondHigh),
-    "secondLow": int(secondLow),
-    "week": int(week)
-}
-
+dataDict = init_data()
 
 def main():
-    # path = os.path.join(os.getcwd(), 'watch_1')
+    # path = os.path.join(os.getcwd(), 'custom_ch')
     # path = os.path.join(os.getcwd(), 'amazfit')
-    path = os.path.join(os.getcwd(), 'custom_ch')
+    path = os.path.join(os.getcwd(), 'Black_Digital')
     watchfaceConfigFile = os.path.join(path, 'watchface\\watch_face_config.xml')
     sourcePath = os.path.join(path, 'watchface\\res')
     content = read_file(watchfaceConfigFile)
@@ -151,9 +118,7 @@ def type_TEXTUREMAPPER(im, styleDict, sourcePath):  # 图片旋转，如时分�
     newImg.paste(img, (newX, newY), mask=a) # 黏贴好指针后，将背景设为透明 
 
     # 指针旋转
-    # angle = random.randint(beginArc, endArc)
-    data = get_data(dataType, now)
-    # dataAngle = get_data_angle(dataType, data)
+    data = dataDict[dataType]
     angle = data * (endArc - beginArc) + beginArc
     # print('dataType={}, data={:.2f}, angleRange={}-{}, angle={:.2f}'.format(dataType, data, beginArc, endArc, angle))
     newImg = newImg.rotate(-angle)
@@ -188,9 +153,9 @@ def type_CIRCLE(im, styleDict, sourcePath): # 圆形进度条，用于步数、�
     bigR = circleR + lineWidth / 2
     smallR = circleR - lineWidth / 2
 
-    data = get_data(dataType, now)
+    data = dataDict[dataType]
     
-    img, a = create_ring(resName, sourcePath, circleX, circleY, bigR, smallR, arcStart, arcEnd, data)
+    img, a = create_ring(dataType, resName, sourcePath, circleX, circleY, bigR, smallR, arcStart, arcEnd, data)
 
     # img, a = open_image(resName, sourcePath)
     im.paste(img, (drawableX,drawableY), mask=a)
@@ -223,7 +188,7 @@ def type_TEXTAREAWITHONEWILDCARD(im, styleDict, sourcePath):    # 动态文本�
     fontType = styleDict['font_type']    # 字体字号
     alpha = int(styleDict['alpha'])    # 文本的透明度值
 
-    data = get_data(dataType, now)
+    data = dataDict[dataType]
     fontFile, fontsize = get_font_type(fontType)
     font = ImageFont.truetype(fontFile, fontsize)
     ImageDraw.Draw(im).text((drawableX, drawableY), str(data), (colorRed, colorGreen, colorBlue), font=font)
@@ -263,7 +228,7 @@ def type_SELECTIMAGE(im, styleDict, sourcePath):    # 随着订阅的数据类�
     res13 = styleDict['res_13']  # 序列帧第14幅图片ID
     res14 = styleDict['res_14']  # 序列帧第15幅图片ID
     resList = [res0, res1, res2, res3, res4, res5, res6, res7, res8, res9, res10, res11, res12, res13, res14]
-    resIndex = int(get_data(dataType, now))
+    resIndex = int(dataDict[dataType])
     img, a = open_image(resList[resIndex], sourcePath)
     im.paste(img, (drawableX, drawableY), mask=a)
 
@@ -287,7 +252,7 @@ def type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath):    # 带连接符�
     alpha = int(styleDict['alpha'])    # 文本的透明度值
 
     dataConnector = get_connector_type(dataCconnectorType)
-    data = str(get_data(dataType, now)) + dataConnector + str(get_data(data2Type, now))
+    data = str(dataDict[dataType]) + dataConnector + str(dataDict[data2Type])
     fontFile, fontsize = get_font_type(fontType)
     font = ImageFont.truetype(fontFile, fontsize)
 
@@ -296,76 +261,9 @@ def type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath):    # 带连接符�
     return im
 
 
-def create_ring(resName, sourcePath, x, y, bigR, smallR, arcStart, arcEnd, data):
-    imageFile = os.path.join(sourcePath, resName)
-    img = Image.open(imageFile).convert('RGBA')
-    width, height = img.size
-    # 切出大圆
-    bigCircle = img
-    for i in range(width):
-        for j in range(height):
-            a, b = (i - x), (j - y)
-            distance = pythagorean_theorem(a, b)
-            if distance > bigR:
-                bigCircle.putpixel((i,j), (0,0,0,0))
-    r,g,b,a = img.split()
-    img.paste(bigCircle, (0,0), mask=a)
-    # 切出小圆，黏贴形成圆环
-    for i in range(width):
-        for j in range(height):
-            a, b = (i - x), (j - y)
-            distance = pythagorean_theorem(a, b)
-            if distance < smallR:
-                img.putpixel((i,j), (0,0,0,0))
-    smallCircle = img
-    r,g,b,a = img.split()
-    img.paste(smallCircle, (0,0), mask=a)
-    # 判断旋转角度
-    # logs = []
-
-    arcMax = max(arcStart, arcEnd)
-    arcMin = min(arcStart, arcEnd)
-    arcData = data * 0.01 * (arcMax - arcMin)   # 获取数据在Circle中的占比值
-    print('arcMax={}, arcData={}%={}, arcMin={}'.format(arcMax, data, arcData, arcMin))
-    arcMax = arcMax - arcData
-    for i in range(width):
-        for j in range(height):  
-            a, b = (i - x), (y - j)
-            if a != 0:
-                degree = math.degrees(math.atan(b / a))
-                if a < 0 and b > 0:
-                    degree = 270 + degree
-                elif a < 0 and b < 0:
-                    degree = 270 - degree
-                elif a > 0 and b > 0:
-                    degree = 90 - degree
-                else:
-                    degree = 90 + degree
-                if degree < arcMin or degree > arcMax:
-                    text = "-> ({}, {}), degree: {:.0f}, range: {}-{}\n".format(a, b, degree, arcMin, arcMax)
-                    # logs.append(text)
-                    with open('log.txt', 'a', encoding='utf-8') as f:
-                        f.write(text[:-1])
-                    img.putpixel((i,j), (0,0,0,0))
-                else:
-                    text = " × ({}, {}), degree: {:.0f}, range: {}-{}\n".format(a, b, degree, arcMin, arcMax)
-                    # logs.append(text)
-            else:
-                img.putpixel((i,j), (0,0,0,0))
-    # with open('log.txt', 'w', encoding='utf-8') as f:
-    #     for text in logs:
-    #         f.write(text)
-    r,g,b,a = img.split()
-    img.paste(smallCircle, (0,0), mask=a)
 
 
 
-    r,g,b,a = img.split()
-    return img, a
-
-
-def pythagorean_theorem(a, b):
-    return (a**2 + b**2)**0.5
 
 
 
