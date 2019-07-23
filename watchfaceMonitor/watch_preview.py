@@ -15,7 +15,7 @@ from matplotlib.patches import Circle
 
 dataDict = init_data()
 
-def main():
+def preview():
     # path = os.path.join(os.getcwd(), 'custom_ch')
     # path = os.path.join(os.getcwd(), 'amazfit')
     path = os.path.join(os.getcwd(), 'Black_Digital')
@@ -45,7 +45,8 @@ def main():
             im = type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath)
         else:
             print('Error: Missing the widget type: {}'.format(widgetType))
-    im.show()
+    # im.show()
+    return im
 
 
 def read_file(filename):    # get file content
@@ -268,4 +269,4 @@ def type_TEXTAREAWITHTWOWILDCARD(im, styleDict, sourcePath):    # 带连接符�
 
 
 if __name__ == "__main__":
-    main()
+    preview()
