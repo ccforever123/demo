@@ -1,3 +1,5 @@
+#!usr/bin/python
+# -*- coding: utf-8 -*-
 from PIL import Image
 import pytesseract
 import os
@@ -41,9 +43,9 @@ def get_text(parent, filename):
 
 def main():
 	# 家里路径
-	path = 'E:\\Documents\\PycharmProjects\\PythonLearning\\Python-study\\demo\\ocr\\img'
+	# path = 'E:\\Documents\\PycharmProjects\\PythonLearning\\Python-study\\demo\\ocr\\img'
 	# 公司路径
-#	path = 'D:\\Documents\\PycharmProject\\Python-study\\demo\\ocr\\img'
+	path = 'E:\\Documents\\PycharmProjects\\demo\\ocr\\img'
 	for parent, dirnames, filenames in os.walk(path):
 		for filename in filenames:
 			text = get_text(parent, filename)
