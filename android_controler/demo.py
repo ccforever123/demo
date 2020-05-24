@@ -3,7 +3,7 @@ import adb
 
 # 获取当前连接的设备id和状态
 def get_deviceId():
-    text = adb.system_control('devices')
+    text = adb.system_ctrl('devices')
     devices = text.split('\n')
     for i in range(len(devices)):
         print('{}: {}'.format(i, devices[i]))
@@ -20,7 +20,7 @@ def conn_device(deviceId, deviceStatus):
     if deviceStatus == 'device':
         print('The device {} is now been connected.'.format(deviceId))
         comm = 'shell "dumpsys activity activities | grep mResumedActivity"'
-        conn = adb.device_control(deviceId, comm)
+        conn = adb.device_ctrl(deviceId, comm)
         print(conn)
     else:
         print('The device {} is {}'.format(deviceId, deviceStatus))
@@ -31,13 +31,13 @@ def conn_device(deviceId, deviceStatus):
 def start_app(deviceId):
     appActivity = 'com.pingan.lifeinsurance'
     comm = 'shell am start -n {}'.format(deviceId, appActivity)
-    run = adb.device_control(deviceId, comm)
+    run = adb.device_ctrl(deviceId, comm)
     print(run)
 
 
 if __name__ == "__main__":
-    start = adb.system_control('start-server')
+    start = adb.system_ctrl('start-server')
     deviceId, deviceStatus = get_deviceId()
     conn_device(deviceId, deviceStatus)
     start_app(deviceId)
-    stop = adb.system_control('kill-server')
+    stop = adb.system_ctrl('kill-server')

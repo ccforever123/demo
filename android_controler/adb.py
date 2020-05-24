@@ -1,18 +1,18 @@
 import os
 
-def system_control(commamd):
+def system_ctrl(commamd):
     msg = os.popen('D:\\adb\\adb.exe {}'.format(commamd)).read()
     # print(msg)
     return msg
 
 
-def device_control(deviceId, command):
+def device_ctrl(deviceId, command):
     msg = os.popen('D:\\adb\\adb.exe -s {} {}'.format(deviceId, command)).read()
     # print(msg)
     return msg
 
 
 if __name__ == "__main__":
-    system_control('start-server')
-    system_control('devices')
-    system_control('kill-server')
+    system_ctrl('start-server')
+    system_ctrl('devices')
+    system_ctrl('kill-server')

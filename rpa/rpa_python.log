@@ -1,0 +1,30 @@
+
+START - automation started - Sat May 23 2020 10:47:46 GMT+0800 (中国标准时间)
+
+LIVE MODE - type done to quit
+ [RPA][STARTED]
+[RPA][0] - listening for inputs
+[RPA][1] - https://www.hattrick.org/zh/
+[RPA][1] - listening for inputs
+[RPA][2] - exist_result = exist('ctl00_CPContent_ucLogin_txtUserName').toString()
+[RPA][2] - listening for inputs
+[RPA][3] - dump exist_result to rpa_python.txt
+[RPA][3] - listening for inputs
+[RPA][4] - type ctl00_CPContent_ucLogin_txtUserName as ccforever
+[RPA][4] - listening for inputs
+[RPA][5] - exist_result = exist('ctl00_CPContent_ucLogin_txtPassword').toString()
+[RPA][5] - listening for inputs
+[RPA][6] - dump exist_result to rpa_python.txt
+[RPA][6] - listening for inputs
+[RPA][7] - type ctl00_CPContent_ucLogin_txtPassword as cc0323
+[RPA][7] - listening for inputs
+[RPA][8] - exist_result = exist('ctl00_CPContent_ucLogin_butLogin').toString()
+[RPA][8] - listening for inputs
+[RPA][9] - dump exist_result to rpa_python.txt
+[RPA][9] - listening for inputs
+[RPA][10] - click ctl00_CPContent_ucLogin_butLogin
+[RPA][10] - listening for inputs
+[RPA][11] - exist_result = exist('myClubLink').toString()
+[RPA][11] - listening for inputs
+[RPA][12] - dump exist_result to rpa_python.txt
+[RPA][12] - listening for inputs
