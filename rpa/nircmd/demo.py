@@ -1,18 +1,32 @@
+# encoding: utf-8
 import os
 import nircmd
-
+import time
 
 def main():
-    exefile = '"D:\\documents\\git\\work\\好邻居\\采集台上传测试\\data\\main\\main.exe"'
-    open_exe_file(exefile)
+    exeFile = 'C:\ServYou\EPPortalXM_DS3.0_V2.1\EPEvenue_SH.exe'
+    os.system(exeFile)
+    print('starting the file: {}'.format(exeFile))
+    time.sleep(5)
+    # 选择申报密码登陆
+    nircmd.set_cursor(1400, 580)
+    time.sleep(1)
+    nircmd.click()
+    for i in range(0, 2):
+        nircmd.set_cursor(1200, 640)
+        nircmd.click()
+        startYpx = 670
+        ddd(startYpx)
 
-def open_exe_file(exefile):
-    command = 'start "" {}'.format(exefile)
-    os.system(command)
-    print('{} file has been opened.'.format(exefile))
+        
+
+
+def ddd(startYpx):
+    nircmd.set_cursor(1200, startYpx)
+    time.sleep(1)
+    nircmd.click()
+    print('click the mouse at (1200, {})'.format(startYpx))
 
 
 if __name__ == "__main__":
-    # savePath = os.getcwd()
-    # nircmd.save_screenshot_win(savePath)
     main()
