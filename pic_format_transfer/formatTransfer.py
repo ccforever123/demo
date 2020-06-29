@@ -6,7 +6,7 @@ def bmp2jpg(path, filename):
     file_path = os.path.join(path, filename)
     img = Image.open(file_path)
     img = img.transpose(Image.ROTATE_90)
-    target_file = os.path.join(path, 'output\\pillow\\{}.jpg'.format(filename[:-4]))
+    target_file = os.path.join(path, 'output\\{}.jpg'.format(filename[:-4]))
     img.save(target_file)
 
 
